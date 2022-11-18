@@ -1,0 +1,2 @@
+SELECT * FROM MYORDER m ;
+SELECT * FROM MYORDER m WHERE userid = 'jeju';
