@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="**|main/java/dao/|main/java/dao/|main/java/|main/java/|main/java/|main/webapp/|main/webapp/" kind="src" path="src"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry excluding="**" kind="src" path="src/main/webapp"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-15">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="E:/a01_javaexp/workspace/drivers/maven/maven-central/com.oracle.database.jdbc/ojdbc8-12.2.0.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="E:/a01_javaexp/workspace/DY project/yogiyo/src/main/webapp/WEB-INF/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="E:/a01_javaexp/workspace/DY project/yogiyo/src/main/webapp/WEB-INF/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="E:/a01_javaexp/workspace/DY project/yogiyo/src/main/webapp/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v10.0"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
