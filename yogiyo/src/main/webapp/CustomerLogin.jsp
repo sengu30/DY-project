@@ -46,8 +46,23 @@ nav button{border-radius:2px; border-style:solid;border-width:0.5px;
 #ico-cancel{margin:0px;background-image: url('icon-X.png');background-size:50%;}
 #btn-search{margin:0px;color:white; border-top-right-radius: 10px;border-bottom-right-radius: 10px;background-color:#ff8a00;}
 
-#categorylist{margin:0px;padding:0px;width:1300px;min-width:600px;flex-wrap:wrap;background-color:skyblue}
-#categorylist div{margin:5px; border:lightgray 0.5px solid; flex-basis:260px;height: 250px}
+#categorylist{margin:0px;padding:0px;width:1300px;min-width:600px;flex-wrap:wrap;}
+#categorylist div{margin:5px; border:lightgray 0.5px solid; flex-basis:277px;height: 250px;text-align: left;position: relative;}
+#categorylist div img{position: absolute; right: 0px; bottom:0px; height:100%;}
+#categorylist div span{position: absolute; left: 10px; top:10px; height:100%;z-index: 1; font-weight: bold}
+
+.footermenu{font-size: 0.8em; color:gray;}
+.footermenu li{display:inline-block;padding-right: 10px; }
+ li::after {content:"  |";color: lightgray; font-size:0.8em; }
+ .footerinfo{
+ 	margin:35px;
+ 	vertical-align:middle;
+	display:flex; 
+	flex-direction:row;
+	justify-content:center;
+	align-items: center;
+ }
+ .footerinfo img{margin-right:20px}
 </style>
 <script type="text/javascript"></script>
 </head>
@@ -72,21 +87,41 @@ nav button{border-radius:2px; border-style:solid;border-width:0.5px;
 </header>
 <main class="container">
 <div class="container" id="categorylist">
-<div>오늘의 할인</div>
-<div>전체보기</div>
-<div>1인분 주문</div>
-<div>프랜차이즈</div>
-<div>치킨</div>
-<div>피자/양식</div>
-<div>중국집</div>
-<div>일식/돈까스</div>
-<div>족발/보쌈</div>
-<div>야식</div>
-<div>카페/디저트</div>
-<div>편의점</div>
+<div><img src="/img/오늘의할인.png" alt="오늘의 할인"></div>
+<div><span>전체보기</span><img src="/img/category-01.png"></div>
+<div><span>1인분 주문</span><img src="/img/category-onedish.png"></div>
+<div><span>프랜차이즈</span><img src="/img/category-10.png"></div>
+<div><span>치킨</span><img src="/img/category-02.png"></div>
+<div><span>피자/양식</span><img src="/img/category-03.png"></div>
+<div><span>중국집</span><img src="/img/category-04.png"></div>
+<div><span>일식/돈까스</span><img src="/img/category-06.png"></div>
+<div><span>족발/보쌈</span><img src="/img/category-07.png"></div>
+<div><span>야식</span><img src="/img/category-08.png"></div>
+<div><span>분식</span><img src="/img/category-09.png"></div>
+<div><span>카페/디저트</span><img src="/img/category-11.png"></div>
+<div><span>편의점</span><img src="/img/category-convenience-store.png"></div>
 </div>
 </main>
-
-
+<footer class="footermenu">
+<hr>
+<ul>
+<li>이용약관
+<li>개인정보처리방침
+<li>포인트정책
+<li>회사소개
+<li>요기요사장님
+<li>입점문의
+<li>공지사항
+<li>SNS
+</ul>
+<hr>
+<div class="footerinfo">
+	<img src="/img/footerlogo.png">
+	<p>
+	<b style="color:black;text-align:left">주식회사 위대한상상</b><br>
+	서울시 서초구 서초대로38길 12 마제스타시티 타워2 17층 | 대표이사 : 서성원 | 사업자등록번호:211-88-68802 사업자정보확인통신판매업신고:제 2018-서울서초-2635호 | 개인정보담당자 : privacy@yogiyo.co.kr | 제휴문의 : partnership@yogiyo.co.kr | 고객만족센터 : support@yogiyo.co.kr | 호스팅 제공자: 카페24 주식회사
+	</p>
+</div>
+</footer>
 </body>
 </html>
