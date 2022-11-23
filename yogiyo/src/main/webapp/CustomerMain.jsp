@@ -25,7 +25,9 @@
 #btn-search{margin:0px;color:white; border-top-right-radius: 10px;border-bottom-right-radius: 10px;background-color:#ff8a00;}
 
 #categorylist{margin:0px;padding:0px;width:1300px;min-width:600px;flex-wrap:wrap;}
-#categorylist div{margin:5px; border:lightgray 0.5px solid; flex-basis:277px;height: 250px;text-align: left;position: relative;}
+#categorylist a{margin:5px;border:lightgray 0.5px solid; flex-basis:277px;height: 250px;text-align: left;position: relative;}
+/* #categorylist a div{margin:5px; border:lightgray 0.5px solid; flex-basis:277px;height: 250px;text-align: left;position: relative;}
+#categorylist div{margin:5px; border:lightgray 0.5px solid; flex-basis:277px;height: 250px;text-align: left;position: relative;} */
 #categorylist div img{position: absolute; right: 0px; bottom:0px; height:100%;}
 #categorylist div span{position: absolute; left: 10px; top:10px; height:100%;z-index: 1; font-weight: bold}
 </style>
@@ -42,9 +44,9 @@
 <body>
 <header>
 <nav>
-<img id="minilogo" alt="요기요 메인" src="logo-white.png">
-<button id="cartbutton">주문표</button>
-<button id="logbutton">로그인</button></nav>
+<a style="margin-right: auto" href="CustomerMain.jsp"><img id="minilogo" alt="요기요 메인" src="logo-white.png"></a>
+<a><button id="cartbutton">주문표</button></a>
+<a href="CustomerLogin.jsp"><button id="logbutton">로그인</button></a></nav>
 <div id="search-show" class="container">
 	<div><span style="font-size:2.5em">"어디로 <span style="color:gold">배달</span>해 드릴까요?"</span><br>배달받으실 동 이름으로 검색해주세요<br>
 		<div class="inputgroup">
@@ -59,19 +61,19 @@
 </header>
 <main class="container">
 <div class="container" id="categorylist">
-<div><img src="/img/오늘의할인.png" alt="오늘의 할인"></div>
-<div><span>전체보기</span><img src="/img/category-01.png"></div>
-<div><span>1인분 주문</span><img src="/img/category-onedish.png"></div>
-<div><span>프랜차이즈</span><img src="/img/category-10.png"></div>
-<div><span>치킨</span><img src="/img/category-02.png"></div>
-<div><span>피자/양식</span><img src="/img/category-03.png"></div>
-<div><span>중국집</span><img src="/img/category-04.png"></div>
-<div><span>일식/돈까스</span><img src="/img/category-06.png"></div>
-<div><span>족발/보쌈</span><img src="/img/category-07.png"></div>
-<div><span>야식</span><img src="/img/category-08.png"></div>
-<div><span>분식</span><img src="/img/category-09.png"></div>
-<div><span>카페/디저트</span><img src="/img/category-11.png"></div>
-<div><span>편의점</span><img src="/img/category-convenience-store.png"></div>
+<a href="EventOfToday.jsp"><div><img src="/img/오늘의할인.png" alt="오늘의 할인"></div></a>
+<a href="EventOfToday.jsp"><div><span>전체보기</span><img src="/img/category-01.png"></div></a>
+<a><div><span>1인분 주문</span><img src="/img/category-onedish.png"></div></a>
+<a><div><span>프랜차이즈</span><img src="/img/category-10.png"></div></a>
+<a><div><span>치킨</span><img src="/img/category-02.png"></div></a>
+<a><div><span>피자/양식</span><img src="/img/category-03.png"></div></a>
+<a><div><span>중국집</span><img src="/img/category-04.png"></div></a>
+<a><div><span>일식/돈까스</span><img src="/img/category-06.png"></div></a>
+<a><div><span>족발/보쌈</span><img src="/img/category-07.png"></div></a>
+<a><div><span>야식</span><img src="/img/category-08.png"></div></a>
+<a><div><span>분식</span><img src="/img/category-09.png"></div></a>
+<a><div><span>카페/디저트</span><img src="/img/category-11.png"></div></a>
+<a><div><span>편의점</span><img src="/img/category-convenience-store.png"></div></a>
 </div>
 </main>
 <footer class="footermenu">
@@ -88,7 +90,7 @@
 </ul>
 <hr>
 <div class="footerinfo">
-	<img src="/img/footerlogo.png">
+<a href="CustomerMain.jsp">	<img src="/img/footerlogo.png"></a>
 	<p>
 	<b style="color:black;text-align:left">주식회사 위대한상상</b><br>
 	서울시 서초구 서초대로38길 12 마제스타시티 타워2 17층 | 대표이사 : 서성원 | 사업자등록번호:211-88-68802 사업자정보확인통신판매업신고:제 2018-서울서초-2635호 | 개인정보담당자 : privacy@yogiyo.co.kr | 제휴문의 : partnership@yogiyo.co.kr | 고객만족센터 : support@yogiyo.co.kr | 호스팅 제공자: 카페24 주식회사

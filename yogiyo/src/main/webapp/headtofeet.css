@@ -1,19 +1,20 @@
 @charset "UTF-8";
 
 body{margin:0px; padding:0px;}
-nav{background-color:#f90050; height:90px;
+a{margin:0px; padding:0px;}
+nav{background-color:#f90050; height:80px;
 	display:flex;
 	flex-direction:row;
 	flex-wrap:nowrap;
 	justify-content:flex-end;
 	align-items:center;}
-nav button{border-radius:2px; border-style:solid;border-width:0.5px; 
+nav a {flex-basis:15%;margin:10px;}
+nav a button{border-radius:2px; border-style:solid;border-width:0.5px; 
 	font-size:larger;color:white;
 	padding:10px;
-	margin:20px;
-	flex-basis:10%;
+	width:100%
 	}
-#minilogo{margin-right: auto; height: 50%;padding:20px;}
+#minilogo{margin-right: auto; height: 30px;padding:20px;}
 #logbutton{background-color:#f90050; border-color:white;}
 #cartbutton{background-color:#ff8a00; border-color:#ff8a00;}
 .container{
