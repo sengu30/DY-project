@@ -12,7 +12,7 @@ public class CusLogin {
 	boolean ison=false;
 	
 	public CusLogin() {
-		while(true) {
+	/*	while(true) {
 		System.out.println("1.로그인 2. 비회원 3.회원가입");
 		String switching=sc.nextLine();
 		switch(switching) {
@@ -21,7 +21,7 @@ public class CusLogin {
 		case "3":CusSignup su=new CusSignup();break;
 		}
 		if(ison) {break;}
-		}
+		}*/
 	}
 	
 	public void login() {

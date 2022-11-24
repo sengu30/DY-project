@@ -17,9 +17,11 @@ public class CustomerDao {
 	private Statement stmt;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
+	public static Customer Logon2=new Customer();
+	//CustomerDao.Logon2
 	List<Customer> clist = new ArrayList<Customer>();
 	Scanner sc = new Scanner(System.in);
-
+	
 	public List<Customer> selectC() {
 		try {
 			con = DB.con();
@@ -40,6 +42,30 @@ public class CustomerDao {
 		return clist;
 	}
 
+	public boolean selectlogin(String id,String pw) {
+		boolean ison=false;
+		try {
+			con = DB.con();
+			String sql = "SELECT * FROM CUSTOMER c WHERE USERID = LOWER(?) AND pw= ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Logon2=new Customer(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),	rs.getString(5));
+			ison=true;
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL예외: " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반예외:" + e.getMessage());
+		} finally {
+			DB.close(rs, stmt, con);
+		}
+		return ison;
+	}
+	
+	
 	public List<Customer> selectid(String userid) {
 		try {
 			con = DB.con();

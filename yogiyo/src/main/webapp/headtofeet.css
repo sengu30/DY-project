@@ -1,5 +1,6 @@
 @charset "UTF-8";
-
+:link{color:black}
+:visited{color:black}
 body{margin:0px; padding:0px;}
 a{margin:0px; padding:0px;}
 nav{background-color:#f90050; height:80px;
@@ -17,6 +18,7 @@ nav a button{border-radius:2px; border-style:solid;border-width:0.5px;
 #minilogo{margin-right: auto; height: 30px;padding:20px;}
 #logbutton{background-color:#f90050; border-color:white;}
 #cartbutton{background-color:#ff8a00; border-color:#ff8a00;}
+
 .container{
 		text-align:center;
  		vertical-align:middle;

@@ -36,7 +36,7 @@
 
 
 
-<main class="colcontainer" style="border:4px solid blue">
+<main class="colcontainer">
 <img src="/img/event_nov.png">
 <a href="CustomerMain.jsp"><img src="/img/주문하러가기.png"></a>
 <img src="/img/로그인시에만할인이적용됩니다.png">

@@ -11,7 +11,7 @@
 <style type="text/css">
 #search-show{
 		height:280px;
-		background:url('background-chicken.jpg') ;
+		background:url('background-chicken.png') ;
 		background-size:cover;
 		background-position:center;
 		color:white;
@@ -52,8 +52,14 @@
 		<div class="inputgroup">
 		<button id="ico-loc" type="button">&nbsp;</button>
 		<input type="text" name="address" onfocus="showX()" onblur="hiddenX()">
+<script>
+function resetform() {
+	var target=document.querySelector("[name=address]")
+	target.value="";
+}		
+</script>
 		<span>
-		<button id="ico-cancel" type="button">&nbsp;</button>
+		<button id="ico-cancel" type="button" onclick="resetform()">&nbsp;</button>
 		<button id="btn-search" type="button">검색</button></span>
 		</div>
 	</div>
@@ -63,7 +69,7 @@
 <div class="container" id="categorylist">
 <a href="EventOfToday.jsp"><div><img src="/img/오늘의할인.png" alt="오늘의 할인"></div></a>
 <a href="EventOfToday.jsp"><div><span>전체보기</span><img src="/img/category-01.png"></div></a>
-<a><div><span>1인분 주문</span><img src="/img/category-onedish.png"></div></a>
+<a href=""><div><span>1인분 주문</span><img src="/img/category-onedish.png"></div></a>
 <a><div><span>프랜차이즈</span><img src="/img/category-10.png"></div></a>
 <a><div><span>치킨</span><img src="/img/category-02.png"></div></a>
 <a><div><span>피자/양식</span><img src="/img/category-03.png"></div></a>

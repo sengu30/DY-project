@@ -1,6 +1,8 @@
+<%@page import="java.io.Console"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="java.util.*"
+    import="dao.*"
     %>
 <!DOCTYPE html>
 <html>
@@ -10,8 +12,8 @@
 <link href="headtofeet.css" rel="stylesheet">
 <style type="text/css">
 .loginlogo{height: 50px;margin:20px;}
-.loginform{position:relative;width:80%}
-.loginform input{border:0.5px lightgray solid;}
+.loginform{position:relative;width:80%;}
+.loginform input{border:0.5px lightgray solid; }
 .loginform [type=text],[type=password]{height:38px; width:100%}
 .loginform [type=checkbox]{	
 	height: 24px; width:24px;accent-color:#f90050;}
@@ -26,32 +28,65 @@
 
 </style>
 </head>
-
 <body>
 <header>
 <nav>
 <a style="margin-right: auto" href="CustomerMain.jsp"><img id="minilogo" alt="요기요 메인" src="logo-white.png"></a>
 <a><button id="cartbutton">주문표</button></a>
-<a href="CustomerLogin.jsp"><button id="logbutton">로그인</button></nav></a>
+<a href="CustomerLogin.jsp"><button id="logbutton">로그인</button></a></nav>
 </header>
 
+<%! CustomerDao cd=new CustomerDao();
+boolean ison;
+%>
 
 
-<main class="container" style="border:4px solid blue">
-<div class="loginform" style="border:4px solid green">
-<img class="loginlogo" src="logo.png">
+<main class="container">
+<div class="loginform">
+<img class="loginlogo" src="logo.png" alt="요기요로고" title="요기요">
 <form>
-<input type="text" name="userid" placeholder="이메일 주소 입력(필수)">
-<input type="password" name="pw" placeholder="비밀번호 입력(필수)">
+<input type="text" name="userid" placeholder="이메일 주소 입력(필수)" >
+<input type="password" name="pw" placeholder="비밀번호 입력(필수)" >
 
 <label id="autologlabel"><input type="checkbox" name="autologin"><span style="vertical-align: 5px">자동 로그인</span></label>
 <span id="idinquiry"><a>아이디 찾기</a> | <a>비밀번호 찾기</a></span>
 
-<button id="loginbutton">로그인</button>
+<button type="button" id="loginbutton" onclick="loginsubmit()">로그인</button>
 </form>
 <button class="loginsocail">네이버로 로그인</button>
 <button class="loginsocail">카카오로 로그인</button>
 </div>
+<%
+String id=request.getParameter("userid");
+String pw=request.getParameter("pw");
+if(id!=null&&pw!=null){
+	ison=cd.selectlogin(id, pw);
+	%>
+	<script>
+	alert('if문 실행중'+<%=ison%>);
+	</script>
+	<%
+	}
+%>
+
+<script>
+function loginsubmit(){
+	let userid=document.querySelector('[name=userid]');
+	let pw=document.querySelector('[name=pw]');
+	if(userid!=null && userid.trim!=""){
+	document.querySelector("form").submit();
+	var ison=<%=ison%>
+	 if(<%=ison%>){
+		alert('<%=CustomerDao.Logon2.getName()%>');
+		 location.href ="CustomerLogin.jsp";
+		}else{
+			alert(<%=id%>);
+			alert('등록되지 않은 계정입니다. 회원가입 후 이용 부탁드립니다.');
+		} 
+	}else{alert('입력값이 잘못됨')}
+}
+</script>
+
 
 <img id="adimg" src="https://www.yogiyo.co.kr/mobile/image/signin_banner.png">
 
