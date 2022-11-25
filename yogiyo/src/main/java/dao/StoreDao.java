@@ -20,7 +20,7 @@ public class StoreDao {
 	List<Store> slist=new ArrayList<Store>();
 	Store thisstore= new Store();
 	
-	public List<Store> selectonS(String category) { // 음식점 목록에서 보여지는거
+	public List<Store> selectonS(String loc,String category) { // 음식점 목록에서 보여지는거
 	//String registNum, String storename,String category, String minOrder, String brand
 		try {
 			con=DB.con();
@@ -28,7 +28,8 @@ public class StoreDao {
 					+ "FROM STORE s\r\n"
 					+ "WHERE s.STATE ='영업' AND ADDRESS LIKE ?||'%' AND CATEGORY LIKE '%'||?||'%'";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, CusLogin.logon.getAddress().substring(0, 10));
+			//pstmt.setString(1, CusLogin.logon.getAddress().substring(0, 10));  자바로 실행할때
+			pstmt.setString(1, loc); //웹으로 실행
 			pstmt.setString(2, category );
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

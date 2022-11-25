@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="java.util.*"
+    import="dao.*"
+    import="vo.*"
     %>
 <!DOCTYPE html>
 <html>
@@ -46,7 +48,7 @@
 <nav>
 <a style="margin-right: auto" href="CustomerMain.jsp"><img id="minilogo" alt="요기요 메인" src="logo-white.png"></a>
 <a><button id="cartbutton">주문표</button></a>
-<a href="CustomerLogin.jsp"><button id="logbutton">로그인</button></a></nav>
+<a href="CustomerLogin.jsp" onclick="logout()"><button id="logbutton">로그인</button></a></nav>
 <div id="search-show" class="container">
 	<div><span style="font-size:2.5em">"어디로 <span style="color:gold">배달</span>해 드릴까요?"</span><br>배달받으실 동 이름으로 검색해주세요<br>
 		<div class="inputgroup">
@@ -68,7 +70,7 @@ function resetform() {
 <main class="container">
 <div class="container" id="categorylist">
 <a href="EventOfToday.jsp"><div><img src="/img/오늘의할인.png" alt="오늘의 할인"></div></a>
-<a href="EventOfToday.jsp"><div><span>전체보기</span><img src="/img/category-01.png"></div></a>
+<a href="Cus_StoreList.jsp"><div><span>전체보기</span><img src="/img/category-01.png"></div></a>
 <a href=""><div><span>1인분 주문</span><img src="/img/category-onedish.png"></div></a>
 <a><div><span>프랜차이즈</span><img src="/img/category-10.png"></div></a>
 <a><div><span>치킨</span><img src="/img/category-02.png"></div></a>
@@ -108,4 +110,24 @@ function resetform() {
 </div>
 </footer>
 </body>
+<script>
+var logbutton= document.getElementById('logbutton');
+<% CustomerDao cd = new CustomerDao();%>
+var logon2name='<%=CustomerDao.Logon2.getName()%>'
+
+if(logon2name==null||logon2name=='null'||logon2name.trim()==""){
+		logbutton.innerText ='로그인';
+	 }else{
+		alert(logon2name+'님 안녕하세요');
+		document.querySelector("[name=address]").value="<%=CustomerDao.Logon2.getAddress()%>";
+		logbutton.innerText ='로그아웃';
+	 }
+	 
+function logout(){
+	if(logbutton.innerText=='로그아웃'){
+		<% CustomerDao.Logon2=new Customer(); %>
+		alert('로그아웃 했습니다')
+		}
+	 }	 
+</script>
 </html>

@@ -63,7 +63,12 @@ if(id!=null&&pw!=null){
 	ison=cd.selectlogin(id, pw);
 	%>
 	<script>
-	alert('if문 실행중'+<%=ison%>);
+	var ison=<%=ison%>
+	 if(ison){
+		 location.href ="CustomerMain.jsp";
+		}else{
+			alert('등록되지 않은 계정입니다. 회원가입 후 이용 부탁드립니다.');
+		}
 	</script>
 	<%
 	}
@@ -75,14 +80,6 @@ function loginsubmit(){
 	let pw=document.querySelector('[name=pw]');
 	if(userid!=null && userid.trim!=""){
 	document.querySelector("form").submit();
-	var ison=<%=ison%>
-	 if(<%=ison%>){
-		alert('<%=CustomerDao.Logon2.getName()%>');
-		 location.href ="CustomerLogin.jsp";
-		}else{
-			alert(<%=id%>);
-			alert('등록되지 않은 계정입니다. 회원가입 후 이용 부탁드립니다.');
-		} 
 	}else{alert('입력값이 잘못됨')}
 }
 </script>
@@ -117,5 +114,6 @@ function loginsubmit(){
 <p>주식회사 위대한상상은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 상품/ 거래정보 및 거래와 관련하여 요기요에 등록된 판매자의 고의 또는 과실로 소비자에게 발생하는 손해에 대해 주식회사 위대한상상은 책임을 지지 않습니다. 상품 및 거래에 관하여 보다 정확한 정보는 해당 판매자에게 직접 확인하여 주시기 바랍니다. Copyright YOGIYO. All Rights Reserved.</p>
 </div>
 </footer>
+
 </body>
 </html>

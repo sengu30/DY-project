@@ -34,7 +34,7 @@ public class Storelist {
 	}
 
 	public void listAll() {
-		slist = sd.selectonS("");	//카테고리 없어서 ""만 있는거
+		slist = sd.selectonS("","");	//카테고리 없어서 ""만 있는거
 		for (Store ss : slist) {
 			System.out.println("┏━━━━━━━" + ss.getStorename() + "━━━━━━━┓");
 			System.out.print("평균별점: " + ss.getAvgstar());
