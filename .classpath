@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Coupang/src"/>
+	<classpathentry kind="src" path="yogiyo/src/main/java"/>
+	<classpathentry kind="lib" path="yogiyo/src/main/webapp/WEB-INF/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="yogiyo/src/main/webapp/WEB-INF/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="yogiyo/src/main/webapp/WEB-INF/lib/ojdbc8-12.2.0.1.jar"/>
+	<classpathentry kind="lib" path="yogiyo/src/main/webapp/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="output" path="Coupang/bin"/>
+</classpath>
