@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>요기요 결제하기</title>
+<style type="text/css">
+/* div{border:2px solid black;} */
+#head{width: 100%; height: 75px; display:flex; background: rgb(250,0,80); margin:0;}
+#head #logo{margin-left:300px; margin-top:1%; margin-right: 280px;}
+#head #login{ margin-top: 1%; margin-left:400px; padding-left :15px; padding-right:15px; height:20px;  
+padding-top:10px; padding-bottom:15px; width: 100px; font:15px bold; border: rgb(255,138,0) solid 1px; 
+color:white; text-align: center;}
+#head #orderchart{ margin-top: 1%; margin-left:10px; padding-left :15px; padding-right:15px; height:20px;  
+padding-top:10px; padding-bottom:15px; width: 100px; font: 15px bold; background: rgb(255,138,0); 
+color:white; text-align: center;}
+#head a:link{text-decoration: none;color:white;}
+#head a:visited{text-decoration: none;color:white;}
+
+#main{display:flex; background: rgb(250,250,250);}
+#left{width: 55%; height: 800px; padding-left: 20%;}
+#right{width:45%; height:800px; display: flex; flex-direction: column; padding-top: 20px; padding-left: 5px;}
+#right #pay{padding-left: 0px;}
+#right>div{width:47%; padding-left: 5px;}
+#right .tit{border: rgb(221,221,221) solid 1px;}
+#foot{width:100%; height:250px;background:rgb(250,250,250);display: flex; justify-content: center; align-content:center; flex-flow: column;margin-left: auto;margin-right: auto;}
+#foot div{width:60%; padding-left: 23%;}
+
+nav{width:100%; height:50px;background:rgb(250,250,250);vertical-align: middle;}
+nav ul{list-style: none; display: flex;justify-content: center; align-content:center;margin: 0;}
+nav ul li{padding-left:4px; padding-right: 4px; font-size: 0.8em;}
+nav a{text-decoration: none;}
+a:link, a:visited {color:gray;}
+#left .title{padding-left:10px; width: 97%; height: 28px; text-align: left; background : rgb(230,230,230);}
+#left .content{padding-left:10px; width:97%; text-align: left; background: white;}
+#left .title, #left .content{margin-right: 0px;}
+#left .payment{width: 230px; height:30px; padding:5px 15px 5px 15px ; text-align: center; border: lightgray solid 1px; 
+color:gray; font-size: 0.8em;margin: 0px;}
+</style>
+<script type="text/javascript">
+/*
+ 
+ */
+</script>
+</head>
+<body>
+
+<div id="head">
+<span id="logo"><a href=""><img src="logo.png" width="90px;" height="40px;"></a></span>
+<span id="login"><a href="">로그인</a></span>
+<span id="orderchart"><a href="">주문표(0)</a></span>
+</div>
+<div id="main">
+<div id="left">
+	<div style="padding-left:10px; margin-top:20px; width: 97%;height: 30px;text-align: left;background: rgb(51,51,51);color:white; ">결제하기</div>
+	<div class="title">배달정보</div>
+	<div class="content" style="height: 130px;">
+		<form>
+		<table style="width: 100%; margin-top: 1%">
+		<col width="20%"><col width="80%">
+			<tr><td style="text-align: right; font-size: 0.8em">주소</td><td><input type="text" value="  서울특별시 구로구 신도림동 398-1" size="75"></td></tr>
+			<tr><td> </td><td><input type="text" placeholder="  (필수)상세주소 입력" size="75"></td></tr>
+			<tr><td style="text-align: right; font-size: 0.8em" >휴대전화번호</td><td><input type="text" placeholder="  (필수)휴대전화 번호 입력" size="75"></td></tr>
+			<tr><td> </td><td><input type="checkbox">안심번호 사용</td></tr>
+		</table>
+		</form>
+	</div>
+	<div class="title">주문시 요청사항</div>
+	<div class="content" style="height: 100px;"><form style="margin-top: 2%;margin-left: 2%"><textarea cols="77px" rows="4px" placeholder="코로나19 예방을 위해 비대면 배달 권장드립니다.요기서 결제 선택 후, &quot문 앞배달 &quot을 요청사항에 남겨주세요"></textarea></form></div>
+	<div class="title" >결제수단 선택</div>
+	<div class="content" style="height: 250px;">
+		<div style="height:25px;font-weight: bold;font-size: 0.9em;">요기서결제</div>
+		<div style="height:110px; display: flex; flex-wrap: wrap; justify-content:center;align-items: center; ">
+			<p class="payment">신용카드</p><p  class="payment">휴대전화</p>
+			<p class="payment">네이버페이</p><p  class="payment">스마일페이</p>
+		</div>
+		<div style="height:25px;margin-top: 10px;font-weight: bold;font-size: 0.9em;">현장결제</div>
+		<div style="height:50px; display: flex;  justify-content:center;align-items: center;">
+			<p class="payment">신용카드</p><p  class="payment">현금</p></div>	
+	</div>
+	<div class="title" style="margin-top: 20px;">할인방법 선택</div>
+	<div class="content" style="height: 70px;">
+		<form><table width="90%" style="margin-right: 5px; padding-top: 2%;">
+		<col width="20%"><col width="65%"><col width="13%">
+		<tr><td>쿠폰</td><td><input type="text" placeholder=" 쿠폰 코드 입력" size="60px"></td><td><input type="submit" value="적용"></td></tr></table></form>
+	</div>
+
+
+</div>
+<div id="right">
+	<div class="tit" style="height: 3%; background: rgb(230,230,230);">주문내역</div>
+	<div class="tit" style="height: 3%; font-size: 0.8em; background: white;">큰맘할매순대국-신도림점</div>
+	<div class="tit" style="background: rgb(255,248,235); font-size: 0.7em; display: flex;">
+		<p style="height: 100px; margin-right: 50px; ">(도시락) 김치순대국: 혼합x1개<br>추가 금액<br>배달료</p>
+		<p style="text-align: right;">10,000원<br>8,000원<br>3,000원</p>
+	</div>
+	<div class="tit" style=" height:40px; background: rgb(255,248,235); font-size: 0.8em; color:rgb(251,67,80);font-weight: 700; display:flex;">
+		<p style="margin-right: 120px;">총 결제 금액</p><p style="text-align: right; ">21,000원</p>
+	</div>
+	<div style="font-size: 0.5em; padding-top: 30px; padding-bottom: 30px">이용약관, 개인정보 수집 및 이용, 개인정보 제3자 제공, 전자금융거래 이용약관, 만 14세 이상 이용자 내용 확인하였으며 결제에 동의합니다.</div>
+	<div id="pay"><input type="submit" value="결제하기" style="background: rgb(251,67,80); color:white; width:102%; padding-top: 10px;padding-bottom: 10px; font-size:1.2em;"></div>	
+</div>
+</div>
+<nav>
+<ul>
+<li><a href="">이용약관</a></li>
+<li>|</li>
+<li><a href="" style="font-weight: 800;">개인정보처리방침</a></li>
+<li>|</li>
+<li><a href="">포인트정책</a></li>
+<li>|</li>
+<li><a href="">회사소개</a></li>
+<li>|</li>
+<li><a href="">요기요사장님</a></li>
+<li>|</li>
+<li><a href="">입점문의</a></li>
+<li>|</li>
+<li><a href="">공지사항</a></li>
+</ul>
+</nav>
+<div id="foot">
+	<div>
+	<p style="font-size: 0.8em; font-weight: bold">주식회사 위대한 상상</p>
+	<p style="font-size: 0.7em; color:gray;">서울시 서초구 서초대로38길 12 마제스타시티 타워2 17층 | 대표이사 : 서성원 | 사업자등록번호:211-88-68802 | 통신판매업신고:제 2018-서울서초-2635호 | 개인정보담당자 : privacy@yogiyo.co.kr | 제휴문의 : partnership@yogiyo.co.kr | 고객만족센터 : support@yogiyo.co.kr | 호스팅 제공자: 카페24 주식회사</p>
+	</div>
+	<div style="font-size: 1.1em; text-align: center; color:gray; padding-top:1%; padding-bottom: 1%;">고객만족센터 1661-5270(유료)</div>
+	<div style="font-size: 0.7em; color: lightgray;">주식회사 위대한상상은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 상품/ 거래정보 및 거래와 관련하여 요기요에 등록된 판매자의 고의 또는 과실로 소비자에게 발생하는 손해에 대해 주식회사 위대한상상은 책임을 지지 않습니다. 상품 및 거래에 관하여 보다 정확한 정보는 해당 판매자에게 직접 확인하여 주시기 바랍니다. Copyright YOGIYO. All Rights Reserved.</div>
+
+</div>
+
+</body>
+<script type="text/javascript">
+/*
+ 
+ */
+</script>
+</html>

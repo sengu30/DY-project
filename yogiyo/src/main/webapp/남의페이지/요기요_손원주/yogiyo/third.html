@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>요기요 결제완료</title>
+
+<style type="text/css">
+
+input[type=button], input[type=submit] {
+  background-color: rgb(180,180,180);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 5px; margin-right: 5px;
+}
+hr{border:1px solid rgb(230,230,230); margin: 0; }
+#head{width: 100%; height: 75px; display:flex; background: rgb(250,0,80); margin:0;}
+#head #logo{margin-left:300px; margin-top:1%; margin-right: 280px;}
+#head #login{ margin-top: 1%; margin-left:400px; padding-left :15px; padding-right:15px; height:20px;  
+padding-top:10px; padding-bottom:15px; width: 100px; font:15px bold; border: rgb(255,138,0) solid 1px; 
+color:white; text-align: center;}
+
+#sotreinfo{height:50px; background: white;line-height: 50px}
+#sotreinfo > span {padding-left: 20%; margin-right: 35% }
+
+#main{display: flex;background: rgb(250,250,250);}
+#left{height:500px; width:50%; padding-left:16%;padding-right: 1%}
+#left #tab {color:rgb(180,180,180); font-size: 0.8em; margin-top: 50px;height: 180px;}
+.tleft{padding-left: 5px;text-align: left}
+.tright{padding-right: 5px;text-align: right}
+
+#tb{margin-top: 60px;}
+
+#right{height:500px; width:50%; padding-right: 16%;padding-left: 1%}
+#right table{height: 70%;margin-top: 50px; border-collapse: collapse;border-color: rgb(250,250,250);}
+#foot{width:100%; height:250px;background:rgb(250,250,250);display: flex; justify-content: center; align-content:center; flex-flow: column;margin-left: auto;margin-right: auto;}
+#foot div{width:60%; padding-left: 23%;}
+#bnav{width:100%; height:50px;background:rgb(250,250,250);vertical-align: middle;}
+#bnav ul{list-style: none; display: flex;justify-content: center; align-content:center; margin-top: 0; padding-top:10px;}
+#bnav ul li{padding-left:4px; padding-right: 4px; font-size: 0.8em;}
+#bnav a{text-decoration: none;}
+#bnav a:link,#bnav a:visited {color:gray;}
+
+
+</style>
+
+</head>
+<body>
+<div id="head">
+<span id="logo"><img src="logo.png" width="90px;" height="40px;"></span>
+<span id="login">로그아웃</span>
+</div>
+<hr>
+<div id="sotreinfo">
+	<span>미스터보쌈족발-신도림점</span> <input type="button" value="주문취소"><input type="button" value="전화하기">
+</div>
+<hr>
+<div id="main">
+
+<div id="left">
+	<table id="tb" width="100%"><col width=50%>
+	<tr><td class="tleft" style="font-size: 1.2em;font-weight: bold">배달주문</td>
+	<td class="tright" style="font-size: 1.2em;font-weight: bold; color:rgb(145,50,109);" >접수 대기중</td></tr>
+	</table>
+	
+	<table id="tab" width="100%"><col width=30%>
+	<tr><td class="tleft">주문번호</td><td class="tright">128382178</td></tr>
+	<tr><td class="tleft">주문시간</td><td class="tright">2022-11-09 20:59:00</td></tr>
+	<tr><td class="tleft">접수번호</td><td class="tright">12493895</td></tr>
+	<tr><td class="tleft">방문 예정시간</td><td class="tright">21:30:00</td></tr>
+	<tr><td class="tleft">가게주소</td><td class="tright">서울특별시 구로구 신도림동 694<br> 신도림 크라운빌 105호</td></tr>
+	
+	</table>	
+</div>
+
+<div id="right">
+	<table width="100%" border><col width=50%>
+	<tr><td class="tleft" colspan="2" style="font-size: 1.2em;font-weight: bold">주문내역</td></tr>
+	<tr style="border-bottom: rgb(225,225,225) solid 1px"><td class="tleft">커플세트 X 1</td><td class="tright">32,000원</td></tr>
+	<tr style="border-bottom: rgb(225,225,225) solid 1px"><td class="tleft" style="font-weight: bold">상품합계</td><td class="tright" style="font-weight: bold">32,000원</td></tr>
+	<tr><td class="tleft" style="color:rgb(180,180,180)">-포인트 할인</td><td class="tright" style="color:gold">-100월</td></tr>
+	<tr style="border-bottom: rgb(225,225,225) solid 1px"><td class="tleft" style="color:rgb(180,180,180)">-선물사용</td><td class="tright"  style="color:gold">-5,000원</td></tr>
+	<tr><td class="tleft" style="color:rgb(145,50,109);font-weight: bold;">결제금액</td><td class="tright" style="color:rgb(145,50,109);font-weight: bold;">26,900원</td></tr>
+	<tr style="border-bottom: rgb(225,225,225) solid 1px"><td class="tleft" style="font-size: 0.8em">결제방식</td><td class="tright"  style="font-size: 0.8em">요기서결제/신용카드</td></tr>
+	<tr><td class="tleft" colspan="2"  style="font-weight: bold;">현금영수증 정보</td></tr>
+	<tr><td class="tleft" style="font-size: 0.8em">신청여부</td><td class="tright" style="font-size: 0.8em">신청</td></tr>
+
+	</table>
+
+
+</div>
+	
+
+</div>
+
+<hr>
+
+<nav id="bnav">
+<ul >
+<li><a href="">이용약관</a></li>
+<li>|</li>
+<li><a href="" style="font-weight: 800;">개인정보처리방침</a></li>
+<li>|</li>
+<li><a href="">포인트정책</a></li>
+<li>|</li>
+<li><a href="">회사소개</a></li>
+<li>|</li>
+<li><a href="">요기요사장님</a></li>
+<li>|</li>
+<li><a href="">입점문의</a></li>
+<li>|</li>
+<li><a href="">공지사항</a></li>
+</ul>
+</nav>
+<hr>
+<div id="foot">
+	<div>
+	<p style="font-size: 0.8em; font-weight: bold">주식회사 위대한 상상</p>
+	<p style="font-size: 0.7em; color:gray;">서울시 서초구 서초대로38길 12 마제스타시티 타워2 17층 | 대표이사 : 서성원 | 사업자등록번호:211-88-68802   | 통신판매업신고:제 2018-서울서초-2635호 | 개인정보담당자 : privacy@yogiyo.co.kr | 제휴문의 : partnership@yogiyo.co.kr | 고객만족센터 : support@yogiyo.co.kr | 호스팅 제공자: 카페24 주식회사</p>
+	</div>
+	<div style="font-size: 1.1em; text-align: center; color:gray; padding-top:1%; padding-bottom: 1%;">고객만족센터 1661-5270(유료)</div>
+	<div style="font-size: 0.7em; color: lightgray;">주식회사 위대한상상은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 상품/ 거래정보 및 거래와 관련하여 요기요에 등록된 판매자의 고의 또는 과실로 소비자에게 발생하는 손해에 대해 주식회사 위대한상상은 책임을 지지 않습니다. 상품 및 거래에 관하여 보다 정확한 정보는 해당 판매자에게 직접 확인하여 주시기 바랍니다. Copyright YOGIYO. All Rights Reserved.</div>
+
+</div>
+
+
+
+</body>
+
+</html>
