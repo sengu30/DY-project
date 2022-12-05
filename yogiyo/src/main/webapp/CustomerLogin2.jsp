@@ -32,16 +32,10 @@
 <header>
 <%@ include file="a01_header_nav.jsp" %>
 </header>
-
-<%! CustomerDao cd=new CustomerDao();
-boolean ison;
-%>
-
-
 <main class="container">
 <div class="loginform">
 <img class="loginlogo" src="logo.png" alt="요기요로고" title="요기요">
-<form>
+<form action="CustomerLogin3.jsp">
 <input type="text" name="userid" placeholder="이메일 주소 입력(필수)" >
 <input type="password" name="pw" placeholder="비밀번호 입력(필수)" >
 
@@ -54,25 +48,19 @@ boolean ison;
 <button class="loginsocail">카카오로 로그인</button>
 </div>
 
-<%
-String id=request.getParameter("userid");
-String pw=request.getParameter("pw");
-if(id!=null&&pw!=null){
-	ison=cd.selectlogin(id, pw);
-	%>
-	<script>
-	var ison=<%=ison%>
-	 if(ison){
-		 location.href ="CustomerMain.jsp";
-		}else{
+
+<img id="adimg" src="https://www.yogiyo.co.kr/mobile/image/signin_banner.png">
+
+</main>
+<footer class="footermenu">
+<%@ include file="a01_footer.jsp" %>
+</footer>
+<script>
+	var ison=<%=request.getAttribute("ison")%>
+	 if(ison==false){
 			alert('등록되지 않은 계정입니다. 회원가입 후 이용 부탁드립니다.');
 		}
-	</script>
-	<%
-	}
-%>
 
-<script>
 function loginsubmit(){
 	let userid=document.querySelector('[name=userid]');
 	let pw=document.querySelector('[name=pw]');
@@ -81,15 +69,6 @@ function loginsubmit(){
 	}else{alert('입력값이 잘못됨')}
 }
 </script>
-
-
-<img id="adimg" src="https://www.yogiyo.co.kr/mobile/image/signin_banner.png">
-
-
-</main>
-<footer class="footermenu">
-<%@ include file="a01_footer.jsp" %>
-</footer>
 
 </body>
 </html>
