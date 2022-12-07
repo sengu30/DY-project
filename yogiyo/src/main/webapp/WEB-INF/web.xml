@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+<context-param>
+	<description>로깅 여부</description>
+	<param-name>logEnagled</param-name>
+	<param-value>true</param-value>
+</context-param>
+<context-param>
+	<description>디버깅 레벨</description>
+	<param-name>debugLevel</param-name>
+	<param-value>5</param-value>
+</context-param>
+<context-param>
+	<description>Person</description>
+	<param-name>name</param-name>
+	<param-value>Jimmy</param-value>
+</context-param>
+<context-param>
+<param-name>age</param-name>
+<param-value>2022-1994</param-value>
+</context-param>
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+ <error-page>
+	<error-code>404</error-code> <!--필수-->
+	<location>/errorpage/error404.jsp</location>
+</error-page>
+
+ <error-page>
+	<error-code>500</error-code>
+	<location>/errorpage/error500.jsp</location>
+</error-page>
+
+ <error-page>
+	<exception-type>java.lang.NullPointerException</exception-type>
+	<location>/errorpage/nullpointer.jsp</location>
+</error-page>
+
+
+</web-app>

@@ -46,7 +46,7 @@ b aa baa → bb aa → aa → 의 순서로 문자열을 모두 제거할 수 �
 	구명보트의 무게 제한은 40kg 이상 240kg 이하입니다.*/
 	public int solution(int[] people, int limit) {
 		int answer = people.length;
-
+		Arrays.sort(people);
 	int j=people.length-1;	//밖에 둬야 없어진 인덱스 유지됨
 	for(int i=0;i<people.length;i++) {
 		if(people[i]<=limit/2) {
@@ -72,7 +72,7 @@ b aa baa → bb aa → aa → 의 순서로 문자열을 모두 제거할 수 �
 		LV2_20221206 lv=new LV2_20221206();
 		int [] people= {40, 50, 55, 60, 65, 70, 75, 80,85, 90};
 		int [] people2= { 40, 40, 40, 40};
-		System.out.println(lv.solution(people2,150));
+		System.out.println(lv.solution(people,150));
 	}
 
 }
