@@ -6,7 +6,7 @@
 <style type="text/css">
 #search-show{
 		height:100px;
-		background:url('background-chicken.png') ;
+		background:url('img/background-chicken.png') ;
 		background-size:cover;
 		background-position:center;
 		color:white;
