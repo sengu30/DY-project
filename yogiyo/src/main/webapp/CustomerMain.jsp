@@ -87,22 +87,23 @@ function resetform() {
 </body>
 <script>
 var logbutton= document.getElementById('logbutton');
-<% CustomerDao cd = new CustomerDao();%>
-var logon2name='<%=CustomerDao.Logon2.getName()%>'
-
-if(logon2name==null||logon2name=='null'||logon2name.trim()==""){
-		logbutton.innerText ='로그인';
-	 }else{
-		alert(logon2name+'님 안녕하세요');
-		document.querySelector("[name=address]").value="<%=CustomerDao.Logon2.getAddress()%>";
-		logbutton.innerText ='로그아웃';
-	 }
+<%
+Customer logonUser=(Customer)session.getAttribute("logonUser");
+if(logonUser==null){
+	%> logbutton.innerText ='로그인'; <%
+}else{
+%>
+	alert('<%=logonUser.getName()%> 님 안녕하세요');
+	document.querySelector("[name=address]").value="<%=logonUser.getAddress() %>";
+	logbutton.innerText ='로그아웃';
 	 
 function logout(){
 	if(logbutton.innerText=='로그아웃'){
-		<% CustomerDao.Logon2=new Customer(); %>
+		<% session.removeAttribute("logonUser"); %>
 		alert('로그아웃 했습니다')
 		}
 	 }	 
+<%}%>	 
+	 
 </script>
 </html>
