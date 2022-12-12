@@ -27,7 +27,7 @@ public class homeForStore {
 				cd.selectlogin(id, pw);
 			}
 		}
-		System.out.println(CustomerDao.Logon2.getUserID());
+
 	}
 
 }
