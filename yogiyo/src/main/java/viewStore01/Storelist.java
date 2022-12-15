@@ -64,7 +64,7 @@ public class Storelist {
 		case 13: category="편의점/마트";break;
 		}
 		System.out.println("카테고리 선택:"+category);
-		slist = sd.selectonS(CustomerDao.Logon2.getAddress(),category);
+	//	slist = sd.selectonS(CustomerDao.Logon2.getAddress(),category);
 		for (Store ss : slist) {
 			System.out.println("┏━━━━━━━" + ss.getStorename() + "━━━━━━━┓");
 			System.out.print("평균별점: " + ss.getAvgstar());
