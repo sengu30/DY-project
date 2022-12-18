@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/a00_com/a01_common.css" rel="stylesheet">
+<style type="text/css">
+img.logo{
+	width:15%;
+	height:150px;
+	position: relative;
+    left: 300px;
+}
+img.user{
+	width:15%;
+	height:150px;
+	position: relative;
+    left: 330px;
+    top:100px;
+}
+a{
+	text-decoration-line: none;
+}
+p.help{
+	font-size:20px;
+	position: absolute;
+ 	top:50px;
+  	right:300px;
+  	padding: 20px;
+  	color:blue;
+}
+div.box01{
+	width:350px;
+	position: relative;
+	top:100px;
+    left: 330px;
+    text-align:center;
+    
+}
+div.box02{
+	position:absolute;
+	width:700px;
+    left:55%;
+    top:250px;
+}
+.margin{
+	margin-top:20px;
+	margin-bottom:20px;
+	width:700px;
+}
+.btn{
+	margin-right:200px;
+	float:center;
+	width:330px;
+	height:50px;
+}
+</style>
+<script>
+
+</script>
+</head>
+<body>
+	<img src="logo.png" class="logo">
+	<p class="help"><a href="#">도움말</a></p>
+	<br>
+	<img src="user.PNG" class="user">
+	<div class="box01">
+		<h1>안녕하세요!!!</h1>
+		<h3>XXXXX@email.com</h3>
+		<hr align="left" width="400px">
+		<h2><a href="#">여행객 정보 입력</a></h2>
+		<hr align="left" width="400px">
+		<h2><a href="#">내 예약</a></h2>
+		<hr align="left" width="400px">
+		<h2><a href="#">가격 변동 알림</a></h2>
+		<hr align="left" width="400px">
+		<h2><a href="#">계정</a></h2>
+		<input type="button" value="로그아웃" style="float:center;width:330px;height:50px"/>
+	</div>
+	<div class="box02">
+		<h1 align="center">상세 개인정보</h1>
+		직함
+		<input class="margin" type="text" name="job"/>
+		이름
+		<input class="margin" type="text" name="name"/>
+		성
+		<input type="text" name="firstName" style="margin-top:20px;"/>
+		<p>여행 증명서와 일치해야 합니다.</p>
+		성별
+		<select class="margin">
+			<option>응답안함</option>
+			<option>남자</option>
+			<option>여자</option>
+		</select>
+		국가/지역
+		<select class="margin">
+			<option>대한민국</option>
+			<option>일본</option>
+			<option>스페인</option>
+			<option>필리핀</option>
+			<option>프랑스</option>
+			<option>태국</option>
+			<option>포르투갈</option>
+		</select>
+		생년월일
+		<input class="margin" type="date" name="birthday" value="YYYY.MM.DD"/>
+		<input class="btn" type="button" value="승객 저장"/>
+	</div>
+
+</body>
+<script type="text/javascript">
+
+</script>
+</html>

@@ -1,7 +1,0 @@
-.listAlignCenter{
-	display:block;
-	align-items:center;
-	text-align: center;
-}
-.listAlignCenter li{ display:inline-block; padding-right: 5%;}
-.bg-lightgray{ background-color: lightgray;}

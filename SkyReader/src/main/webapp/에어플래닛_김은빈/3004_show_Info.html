@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/a00_com/a01_common.css" rel="stylesheet">
+<style type="text/css">
+img.logo{
+	width:15%;
+	height:150px;
+	position: relative;
+    left: 300px;
+}
+img.user{
+	width:15%;
+	height:150px;
+	position: relative;
+    left: 330px;
+    top:100px;
+}
+a{
+	text-decoration-line: none;
+}
+p.help{
+	font-size:20px;
+	position: absolute;
+ 	top:50px;
+  	right:300px;
+  	padding: 20px;
+  	color:blue;
+}
+div.box01{
+	width:350px;
+	position: relative;
+	top:100px;
+    left: 330px;
+    text-align:center;
+    
+}
+div.box02{
+	position:absolute;
+	width:800px;
+    left:55%;
+    top:250px;
+}
+div.box03{
+	position:absolute;
+	width:800px;
+    left:55%;
+    bottom:25px;
+}
+div.flightBox{
+	background:lightgray;
+    width:800px;
+    height:500px;
+    text-align:left; 
+    margin-top:70px;
+}
+.numdiv{
+	margin-top:20px;
+	margin-bottom:20px;
+	width:700px;
+}
+</style>
+<script>
+
+</script>
+</head>
+<body>
+	<img src="logo.png" class="logo">
+	<p class="help"><a href="#">도움말</a></p>
+	<br>
+	<img src="user.PNG" class="user">
+	<div class="box01">
+		<h1>안녕하세요!!!</h1>
+		<h3>XXXXX@email.com</h3>
+		<hr align="left" width="400px">
+		<h2><a href="#">여행객 정보 입력</a></h2>
+		<hr align="left" width="400px">
+		<h2><a href="#">내 예약</a></h2>
+		<hr align="left" width="400px">
+		<h2><a href="#">가격 변동 알림</a></h2>
+		<hr align="left" width="400px">
+		<h2><a href="#">계정</a></h2>
+		<input type="button" value="로그아웃" style="float:center;width:330px;height:50px"/>
+	</div>
+	<div class="box02">
+		<h1 align="center">내 예약</h1>
+		<hr style="position:relative;top:15px;margin-bottom:40px;" width="800px">
+		예약번호
+		<input class="numdiv" type="text" name="job" placeholder="예약번호를 입력하세요"/>
+		<input style="width:20%;" type="button" value="검색">
+		<div class="flightBox">
+			<h3 style="color:gray">예약번호:18739927&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예약날짜:2022년 12월 14일</h3>
+			<hr>
+			<h1>출발지 - 도착지</h1>
+			<div style="display:flex;">
+				<div>
+					항공편명<br>
+					TW125
+				</div>
+				<div style="margin-left:50px;">
+					출발 시간<br>
+					22년 12월 19일 08:45
+				</div>
+				<div style="margin-left:50px;">
+					도착 시간<br>
+					22년 12월 19일 11:40
+				</div>
+			</div>
+			<div style="margin-top:20px;">
+				승객<br>
+				김길동,홍길동,신길동,최길동
+			</div>
+			<h1>출발지 - 도착지</h1>
+			<div style="display:flex;">
+				<div>
+					항공편명<br>
+					TW125
+				</div>
+				<div style="margin-left:50px;">
+					출발 시간<br>
+					22년 12월 26일 15:20
+				</div>
+				<div style="margin-left:50px;">
+					도착 시간<br>
+					22년 12월 26일 18:15
+				</div>
+			</div>
+			<div style="margin-top:20px;">
+				승객<br>
+				김길동,홍길동,신길동,최길동
+			</div>
+			<input style="margin-right:10px;" type="button" value="취소"/>
+			<input style="margin-right:30px;" type="button" value="변경"/>
+		</div>
+	</div>
+	<div class="box03">
+		<input type="button" value=">"/>
+		<input style="margin-right:100px;" type="button" value="<"/>
+	</div>
+
+</body>
+<script type="text/javascript">
+
+</script>
+</html>

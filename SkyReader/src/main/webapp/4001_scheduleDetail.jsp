@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     %>
+<style>
+.listAlignCenter{
+	display:block;
+	align-items:center;
+	text-align: center;
+}
+.listAlignCenter li{ display:inline-block; padding-right: 5%;}
+</style>
 
 <div class="row card-group bg-primary text-white">
 	  <div class="card bg-transparent">
@@ -57,5 +65,4 @@
 </tr>
 </tbody>
 </table>
-
-
+<br>
