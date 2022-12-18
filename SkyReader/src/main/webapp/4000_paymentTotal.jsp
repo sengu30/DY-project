@@ -43,20 +43,19 @@
 <div class="row">
 <div class="col" ><button type="button" class="btn btn-primary" style="width: 100%">즉시 결제</button></div>
 <div class="col" ><button type="button" class="btn btn-secondary" style="width: 100%">예약완료</button></div></div>
-
-<h4>요금 할인조건 변경</h4>
+<br>
 <div class="input-group row">
-<h5 class="col-md-3">마일리지 사용하기</h5>
-<div class="col-md-2"> <input type="number" class="form-control"></div><div class="col-md-2"><span class="input-group-text">/ 1,780,000</span></div></div>
+<h5 class="col-sm-3">마일리지 사용하기</h5>
+<div class="col-sm-3"> <input type="number" class="form-control"></div><div class="col-md-3"><span class="input-group-text">/ 1,780,000</span></div></div>
 <span class="smallinfo">마일리지는 10,000 이상부터 사용 가능합니다</span>
 <br><br>
 <h5>카드사 할인 선택</h5>
 <div class="row">
-<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="삼성카드" >삼성카드결제조건</label><div class="col-sm-3">100,500원</div>
-<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="신한카드" >신한카드결제조건</label><div class="col-sm-3">100,500원</div>
-<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="롯데카드" >롯데카드결제조건</label><div class="col-sm-3">100,500원</div>
-<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="현대카드" >현대카드결제조건</label><div class="col-sm-3">100,500원</div>
-<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="" checked >선택없음</label>
+<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="" checked >선택없음</label><div class="col-sm-3">&nbsp;</div>
+<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="삼성카드" >삼성카드결제조건</label><div class="col-sm-3">100원</div>
+<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="신한카드" >신한카드결제조건</label><div class="col-sm-3">2,200원</div>
+<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="롯데카드" >롯데카드결제조건</label><div class="col-sm-3">3,400원</div>
+<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="현대카드" >현대카드결제조건</label><div class="col-sm-3">40,500원</div>
 </div>
 <br><br>
 
@@ -69,7 +68,7 @@
 </div>
 
 
-<label><input type="checkbox" id="bringcardinfo" >카드정보 불러오기</label>
+<label><input type="checkbox" onchange="bringcardinfo(this)">카드정보 불러오기</label>
 <%@ include file="4005_cardinfo.jsp" %>
 
 <label class="fs-5"><input type="checkbox">항공권 규정 확인 및 약관 전체 동의</label>
@@ -98,7 +97,6 @@
 	        event.preventDefault()
 	        event.stopPropagation()
 	      }
-
 	      form.classList.add('was-validated')
 	    }, false)
 	  })
@@ -106,34 +104,120 @@
 	
 /*2. 카드할인 고르면  같은값으로 카드 select 바꾸고 disabled 속성*/
  var discountcard = document.querySelectorAll('[name=discountcard]')
- var paycard= document.querySelector('[name=paycard]')
- var paycardopts = document.querySelectorAll('[name=paycard] option')
+ var cardcorporate= document.querySelector('[name=cardcorporate]')
+ var cardcorporateopts = document.querySelectorAll('[name=cardcorporate] option')
  
  discountcard.forEach(function(thiscard){
 	 thiscard.addEventListener('change',function(){
 			if(thiscard.value!=""){
-				paycardopts.forEach(function(pc){
+				cardcorporateopts.forEach(function(pc){
 					if(pc.value==thiscard.value){
 						pc.selected=true;
-						paycard.disabled=true;
+						cardcorporate.disabled=true;
 					}
 				})
 			}else{
-				paycard.disabled=false;
+				cardcorporate.disabled=false;
 			}		
 		})
  })
 
-//카드할인 선택지랑 불러온 카드 정보가(아니면 새로 입력한 정보가) 다르면 할인선택도 바뀌게
-paycard.addEventListener('change',function(){
+
+/* 카드정보입력칸에서 카드회사 골랐을때 할인선택도 바뀌게 */
+cardcorporate.addEventListener('change',function(){
 	discountcard.forEach(function(thiscard){
-		if(thiscard.value==paycard.value){
+		if(thiscard.value==cardcorporate.value){
 			thiscard.checked=true;
-			paycard.disabled=true;
+			cardcorporate.disabled=true;
+		}else{
+			discountcard[0].checked=true;
 		}
 	})
 })
 
+
+/*6. 카드정보불러오기:JSP할때 여기로 정보 불러오면 될듯 */
+var cardjson={
+		"cardownertype": "법인",
+		"cardownernation":"내국인",
+		"cardcorporate":"삼성카드",
+		"cardinstallment":"12",
+		"cardnumber":"4444222211115666",
+		"cardYY":"26",
+		"cardMM":"11",
+		"cardownername":"김박박",
+		"cardbirthday":"2000-02-10",
+		"cardpassword":"23",
+		"cardmf":"f"}
+			
+function bringcardinfo(self){
+	var inputs=document.querySelectorAll('#cardinfo input')
+	if(self.checked==true){
+	//불러오기 눌렀을때
+		if(cardjson['cardownertype']=="개인"){
+			inputs[0].checked=true;
+		}else{
+			inputs[1].checked=true;
+		}
+		if(cardjson['cardownernation']=="내국인"){
+			inputs[2].checked=true;
+		}else{
+			inputs[3].checked=true;
+		}
+		inputs[4].value=cardjson['cardnumber']
+		inputs[5].value=cardjson['cardYY']
+		inputs[6].value=cardjson['cardMM']
+		inputs[7].value=cardjson['cardownername']
+		inputs[8].value=cardjson['cardbirthday']
+		inputs[9].value=cardjson['cardpassword']
+
+		if(cardjson['cardmf']=="m"){
+			inputs[10].checked=true;
+		}else{
+			inputs[11].checked=true;
+		}
+
+		//select옵션인 요소 카드회사
+	cardcorporateopts.forEach(function(coropt){
+		if(coropt.value==cardjson['cardcorporate']){
+			coropt.selected = true;
+		//카드사할인
+			discountcard.forEach(function(dscard){
+				if(dscard.value==coropt.value){
+					dscard.checked=true;
+					cardcorporate.disabled=true;
+				}})	
+		}})
+
+		//select옵션인 요소 할부	
+ var cardinstallmentopts = document.querySelectorAll('[name=cardinstallment] option')
+ 	cardinstallmentopts.forEach(function(insopt){
+		if(insopt.value==cardjson['cardinstallment']){
+			insopt.selected = true;
+			document.querySelector('[name=cardinstallment]').disabled=true;
+			}
+		})
+//못바꾸게
+		inputs.forEach(function(thisinput){
+		thisinput.disabled=true;
+		})
+		discountcard.forEach(function(thisinput){
+		thisinput.disabled=true;
+		})
+		
+	}else{
+//체크해제하면 disabled 해제
+		inputs.forEach(function(thisinput){
+		thisinput.disabled=false;
+		})
+		discountcard.forEach(function(thisinput){
+		thisinput.disabled=false;
+		})
+		cardcorporate.disabled=false;
+		document.querySelector('[name=cardinstallment]').disabled=false;
+
+	}
+}
 /*3. 마일리지랑 카드 할인 금액 변경*/
 /*4. 가는편, 오는편 버튼*/
 /*5. 즉시결제일때, 예약완료일때 */

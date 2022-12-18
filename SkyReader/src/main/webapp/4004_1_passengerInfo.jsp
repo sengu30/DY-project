@@ -22,7 +22,7 @@
   <div class="col-auto"> <label for="engsur" class="col-form-label">영문 성</label><input id="engsur" name="engsur" class="form-control"  placeholder="예)HONG" required></div>
   <div class="col-auto"> <label for="engname" class="col-form-label">영문 이름</label><input id="engname" name="engname" class="form-control" placeholder="예)GILDONG" required></div>
   <div class="col-auto"> <label class="col-form-label">생년월일</label><input name="birthday" class="form-control" type="date" required></div>
-  <div class="col-auto"> <label for="mf" class="col-form-label">성별</label><div class="form-control" ><label><input type="radio" name="mf" value="male" checked>남성</label>&nbsp; &nbsp;<label><input type="radio" name="mf" value="female" >여성</label></div></div>
+  <div class="col-auto"> <label for="mf" class="col-form-label">성별</label><div class="form-control" ><label><input type="radio" name="mf" value="m" checked>남성</label>&nbsp; &nbsp;<label><input type="radio" name="mf" value="f" >여성</label></div></div>
 </div> 
 <div class="row g-3 align-items-center"> 
   <div class="col-auto"> <label class="col-form-label">여권번호</label><input id="" name="ppnumber" class="form-control" required></div>
