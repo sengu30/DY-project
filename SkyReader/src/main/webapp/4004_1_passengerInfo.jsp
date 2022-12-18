@@ -7,9 +7,9 @@
 <table class="table table-bordered">
 <tr><td>이름</td><td>이메일</td><td>휴대전화</td></tr>
 <tr>
-<td><input class="form-control"></td>
-<td><div class="input-group"><input type="text" class="form-control"><span class="input-group-text">@</span><input type="text" class="form-control"></div></td>
-<td><div class="input-group"><input maxlength="3" class="form-control"><span class="input-group-text">-</span><input maxlength="4" class="form-control"><span class="input-group-text">-</span><input maxlength="4" class="form-control"></div></td>
+<td><input class="form-control" required></td>
+<td><div class="input-group"><input type="text" class="form-control" required><span class="input-group-text">@</span><input type="text" class="form-control" required></div></td>
+<td><div class="input-group"><input maxlength="3" class="form-control" required><span class="input-group-text">-</span><input maxlength="4" class="form-control " required><span class="input-group-text">-</span><input maxlength="4" class="form-control" required></div></td>
 </tr>	
 </table>
 <ul class="smallinfo">
@@ -18,17 +18,17 @@
 <br>
 <h2>탑승객 정보</h2>
 <div class="row g-3 align-items-center">
-  <div class="col-auto"> <label for="korname" class="col-form-label">한글명</label><input id="korname" name="korname" class="form-control" placeholder="예)홍길동" ></div>
-  <div class="col-auto"> <label for="engsur" class="col-form-label">영문 성</label><input id="engsur" name="engsur" class="form-control"  placeholder="예)HONG" ></div>
-  <div class="col-auto"> <label for="engname" class="col-form-label">영문 이름</label><input id="engname" name="engname" class="form-control" placeholder="예)GILDONG" ></div>
-  <div class="col-auto"> <label class="col-form-label">생년월일</label><input class="form-control" type="date"></div>
-  <div class="col-auto"> <label for="mf" class="col-form-label">성별</label><div class="form-control" ><label><input type="radio" name="mf" value="male" >남성</label>&nbsp; &nbsp;<label><input type="radio" name="mf" value="female" >여성</label></div></div>
+  <div class="col-auto"> <label for="korname" class="col-form-label">한글명</label><input id="korname" name="korname" class="form-control" placeholder="예)홍길동" required></div>
+  <div class="col-auto"> <label for="engsur" class="col-form-label">영문 성</label><input id="engsur" name="engsur" class="form-control"  placeholder="예)HONG" required></div>
+  <div class="col-auto"> <label for="engname" class="col-form-label">영문 이름</label><input id="engname" name="engname" class="form-control" placeholder="예)GILDONG" required></div>
+  <div class="col-auto"> <label class="col-form-label">생년월일</label><input name="birthday" class="form-control" type="date" required></div>
+  <div class="col-auto"> <label for="mf" class="col-form-label">성별</label><div class="form-control" ><label><input type="radio" name="mf" value="male" checked>남성</label>&nbsp; &nbsp;<label><input type="radio" name="mf" value="female" >여성</label></div></div>
 </div> 
-<div class="row g-3 align-items-center">
-  <div class="col-auto"> <label class="col-form-label">여권번호</label><input id="" name="" class="form-control" ></div>
-  <div class="col-auto"> <label class="col-form-label">여권만료일</label><input id="" name="" class="form-control" placeholder="예)20250101" ></div>
-  <div class="col-auto"> <label class="col-form-label">국적</label><input id="" name="" class="form-control" value= "한국"></div>
-  <div class="col-auto"> <label class="col-form-label">여권발행국</label><input id="" name="" class="form-control" value= "한국" ></div>
+<div class="row g-3 align-items-center"> 
+  <div class="col-auto"> <label class="col-form-label">여권번호</label><input id="" name="ppnumber" class="form-control" required></div>
+  <div class="col-auto"> <label class="col-form-label">여권만료일</label><input id="" name="ppexpire" class="form-control" placeholder="예)20250101" required></div>
+  <div class="col-auto"> <label class="col-form-label">국적</label><input id="" name="nation" class="form-control" value="한국" required></div>
+  <div class="col-auto"> <label class="col-form-label">여권발행국</label><input id="" name="ppnation" class="form-control" value= "한국" required></div>
 </div>  
 <ul class="smallinfo">
 <strong>탑승객 영문이름, 생년월일, 성별 기재 시 주의사항</strong>

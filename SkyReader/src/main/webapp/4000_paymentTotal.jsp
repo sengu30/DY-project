@@ -13,6 +13,8 @@
 <title>결제</title>
 </head>
 <body>
+<%@ include file="header.html" %>
+<hr>
 <main class="container">
 <h2>선택한 항공 스케줄</h2>
 <%@ include file="4001_scheduleDetail.jsp" %>
@@ -35,6 +37,7 @@
 <li><strong>[운항안내]</strong> COVID-19 영향으로 국토교통부 방침에 의해 탑승율 제한, 사전 공지 없이 비운항 또는 스케줄이 변경 될 수 있습니다.</li>
 </ul>
 <br><br>
+<form class="needs-validation" novalidate>
 <%@ include file="4004_1_passengerInfo.jsp" %>
 <h2>결제정보</h2>
 <div class="row">
@@ -44,7 +47,7 @@
 <h4>요금 할인조건 변경</h4>
 <div class="input-group row">
 <h5 class="col-md-3">마일리지 사용하기</h5>
-<div class="col-md-2"> <input class="form-control"></div><div class="col-md-2"><span class="input-group-text">/ 1,780,000</span></div></div>
+<div class="col-md-2"> <input type="number" class="form-control"></div><div class="col-md-2"><span class="input-group-text">/ 1,780,000</span></div></div>
 <span class="smallinfo">마일리지는 10,000 이상부터 사용 가능합니다</span>
 <br><br>
 <h5>카드사 할인 선택</h5>
@@ -66,22 +69,74 @@
 </div>
 
 
-<label><input type="checkbox" >카드정보 불러오기</label>
+<label><input type="checkbox" id="bringcardinfo" >카드정보 불러오기</label>
 <%@ include file="4005_cardinfo.jsp" %>
 
 <label class="fs-5"><input type="checkbox">항공권 규정 확인 및 약관 전체 동의</label>
 <ul type="none" class="border">
-<li><label><input type="checkbox">[필수] 항공사 요금규정(변경, 환불, 수하물 등)</label>
-<li><label><input type="checkbox">[필수] 에어플래닛 이용규정(예약, 결제, 여권/비자, 취급수수료 등)</label>
-<li><label><input type="checkbox">[필수] 개인정보 수집 및 이용</label>
+<li><label><input class ="form-check-input" type="checkbox" required>[필수] 항공사 요금규정(변경, 환불, 수하물 등)</label>
+<li><label><input class ="form-check-input" type="checkbox" required>[필수] 에어플래닛 이용규정(예약, 결제, 여권/비자, 취급수수료 등)</label>
+<li><label><input class ="form-check-input" type="checkbox" required>[필수] 개인정보 수집 및 이용</label>
 </ul>
 
-
-<div class="row"><button class="btn btn-primary btn-lg">결제 완료하기</button></div>
+<div class="row"><button type="submit" id="finalsubmit" class="btn btn-primary btn-lg">결제 완료하기</button></div>
+</form>
 <br>
 <br>
 <br>
 </main>
 <%@ include file="0000_footer.html" %>
 </body>
+<script type="text/javascript">
+/* 1. 모두입력*/
+(() => {
+	  'use strict'
+	  const forms = document.querySelectorAll('.needs-validation')
+	  Array.from(forms).forEach(form => {
+	    form.addEventListener('submit', event => {
+	      if (!form.checkValidity()) {
+	        event.preventDefault()
+	        event.stopPropagation()
+	      }
+
+	      form.classList.add('was-validated')
+	    }, false)
+	  })
+	})()
+	
+/*2. 카드할인 고르면  같은값으로 카드 select 바꾸고 disabled 속성*/
+ var discountcard = document.querySelectorAll('[name=discountcard]')
+ var paycard= document.querySelector('[name=paycard]')
+ var paycardopts = document.querySelectorAll('[name=paycard] option')
+ 
+ discountcard.forEach(function(thiscard){
+	 thiscard.addEventListener('change',function(){
+			if(thiscard.value!=""){
+				paycardopts.forEach(function(pc){
+					if(pc.value==thiscard.value){
+						pc.selected=true;
+						paycard.disabled=true;
+					}
+				})
+			}else{
+				paycard.disabled=false;
+			}		
+		})
+ })
+
+//카드할인 선택지랑 불러온 카드 정보가(아니면 새로 입력한 정보가) 다르면 할인선택도 바뀌게
+paycard.addEventListener('change',function(){
+	discountcard.forEach(function(thiscard){
+		if(thiscard.value==paycard.value){
+			thiscard.checked=true;
+			paycard.disabled=true;
+		}
+	})
+})
+
+/*3. 마일리지랑 카드 할인 금액 변경*/
+/*4. 가는편, 오는편 버튼*/
+/*5. 즉시결제일때, 예약완료일때 */
+</script>
+
 </html>
