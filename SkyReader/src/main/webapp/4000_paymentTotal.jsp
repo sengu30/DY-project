@@ -6,14 +6,21 @@
 <html>
 <head>
 <style>
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 	.smallinfo{font-size: 80%;color:gray;}
 </style>
+
+
 <link href="bs-custom.css" rel="stylesheet" >
 <meta charset="UTF-8">
 <title>결제</title>
 </head>
-<body>
-<%@ include file="header.html" %>
+<body onload="">
+<%@ include file="0000_header.html" %>
 <hr>
 <main class="container">
 <h2>선택한 항공 스케줄</h2>
@@ -44,27 +51,40 @@
 <div class="col" ><button type="button" class="btn btn-primary" style="width: 100%">즉시 결제</button></div>
 <div class="col" ><button type="button" class="btn btn-secondary" style="width: 100%">예약완료</button></div></div>
 <br>
-<div class="input-group row">
-<h5 class="col-sm-3">마일리지 사용하기</h5>
-<div class="col-sm-3"> <input type="number" class="form-control"></div><div class="col-md-3"><span class="input-group-text">/ 1,780,000</span></div></div>
+<div class="row .justify-content-start">
+<h5 class="col-3">마일리지 사용하기</h5>
+	<div class="input-group col" id="mileageinput" required>
+	<input type="number" class="form-control" value="0" min ="0" max="99999999">
+	<span class="input-group-text"> / </span>
+	<input type="number" class="input-group-text" value="1780000" readonly>
+	</div>
+	<div class="col-3"></div>
+</div>
 <span class="smallinfo">마일리지는 10,000 이상부터 사용 가능합니다</span>
+
+
 <br><br>
 <h5>카드사 할인 선택</h5>
-<div class="row">
-<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="" checked >선택없음</label><div class="col-sm-3">&nbsp;</div>
-<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="삼성카드" >삼성카드결제조건</label><div class="col-sm-3">100원</div>
-<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="신한카드" >신한카드결제조건</label><div class="col-sm-3">2,200원</div>
-<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="롯데카드" >롯데카드결제조건</label><div class="col-sm-3">3,400원</div>
-<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="현대카드" >현대카드결제조건</label><div class="col-sm-3">40,500원</div>
+<div class="row" id="discountcard">
+<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="" checked >선택없음</label><div class="col-sm-3"></div>
+<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="삼성카드" >삼성카드결제조건</label><div class="col-sm-3">10,000원</div>
+<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="신한카드" >신한카드결제조건</label><div class="col-sm-3">2,000원</div>
+<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="롯데카드" >롯데카드결제조건</label><div class="col-sm-3">3,000원</div>
+<label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="현대카드" >현대카드결제조건</label><div class="col-sm-3">40,000원</div>
 </div>
 <br><br>
 
 <div class="rounded-2 bg-info row">
 <div class="col text-center">총 요금 1,000,000원</div>
-<div class="col"><div class="row"><div class="col">카드할인  -</div><div class="col">20,000</div></div>
-				<div class="row"><div class="col">마일리지 -</div><div class="col ">548,110</div></div>
+<div class="col">
+	<div class="row">
+		<div class="col">카드할인  -</div>
+		<div class="col" id="finaldiscountcard">20,000</div></div>
+	<div class="row">
+		<div class="col">마일리지 -</div>
+		<div class="col" id="finalmileage">548,110</div></div>
 </div>
-<div class="col text-center fs-5">최종결제금액<h2 class="text-primary">800,000</h2>원</div>
+<div class="col text-center fs-5">최종결제금액<h2 class="text-primary" id="finalprice">800,000</h2>원</div>
 </div>
 
 
@@ -78,6 +98,7 @@
 <li><label><input class ="form-check-input" type="checkbox" required>[필수] 개인정보 수집 및 이용</label>
 </ul>
 
+
 <div class="row"><button type="submit" id="finalsubmit" class="btn btn-primary btn-lg">결제 완료하기</button></div>
 </form>
 <br>
@@ -85,9 +106,9 @@
 <br>
 </main>
 <%@ include file="0000_footer.html" %>
-</body>
+
 <script type="text/javascript">
-/* 1. 모두입력*/
+/* 1. 모두입력햇는지 확인*/
 (() => {
 	  'use strict'
 	  const forms = document.querySelectorAll('.needs-validation')
@@ -101,126 +122,54 @@
 	    }, false)
 	  })
 	})()
-	
-/*2. 카드할인 고르면  같은값으로 카드 select 바꾸고 disabled 속성*/
+
  var discountcard = document.querySelectorAll('[name=discountcard]')
  var cardcorporate= document.querySelector('[name=cardcorporate]')
  var cardcorporateopts = document.querySelectorAll('[name=cardcorporate] option')
- 
+	
+/*2. 카드사 할인선택 : 같은값으로 카드 select 바꾸고 disabled 속성*/
  discountcard.forEach(function(thiscard){
 	 thiscard.addEventListener('change',function(){
-			if(thiscard.value!=""){
-				cardcorporateopts.forEach(function(pc){
-					if(pc.value==thiscard.value){
-						pc.selected=true;
+				cardcorporateopts.forEach(function(opt){
+					if(opt.value==thiscard.value){
+						opt.selected=true;
 						cardcorporate.disabled=true;
+						discountcardapply(thiscard.value)
 					}
+					if(thiscard.value==""){cardcorporate.disabled=false;}
 				})
-			}else{
-				cardcorporate.disabled=false;
-			}		
+				finalpriceapply();
 		})
  })
-
-
-/* 카드정보입력칸에서 카드회사 골랐을때 할인선택도 바뀌게 */
-cardcorporate.addEventListener('change',function(){
-	discountcard.forEach(function(thiscard){
+ 
+/* 카드정보입력칸에서 고른 카드회사로 할인선택도 바뀌게 */
+function discountcardbyselectedcard() {
+	for(var thiscard of discountcard){
 		if(thiscard.value==cardcorporate.value){
 			thiscard.checked=true;
 			cardcorporate.disabled=true;
+			break;
 		}else{
 			discountcard[0].checked=true;
-		}
-	})
-})
-
-
-/*6. 카드정보불러오기:JSP할때 여기로 정보 불러오면 될듯 */
-var cardjson={
-		"cardownertype": "법인",
-		"cardownernation":"내국인",
-		"cardcorporate":"삼성카드",
-		"cardinstallment":"12",
-		"cardnumber":"4444222211115666",
-		"cardYY":"26",
-		"cardMM":"11",
-		"cardownername":"김박박",
-		"cardbirthday":"2000-02-10",
-		"cardpassword":"23",
-		"cardmf":"f"}
-			
-function bringcardinfo(self){
-	var inputs=document.querySelectorAll('#cardinfo input')
-	if(self.checked==true){
-	//불러오기 눌렀을때
-		if(cardjson['cardownertype']=="개인"){
-			inputs[0].checked=true;
-		}else{
-			inputs[1].checked=true;
-		}
-		if(cardjson['cardownernation']=="내국인"){
-			inputs[2].checked=true;
-		}else{
-			inputs[3].checked=true;
-		}
-		inputs[4].value=cardjson['cardnumber']
-		inputs[5].value=cardjson['cardYY']
-		inputs[6].value=cardjson['cardMM']
-		inputs[7].value=cardjson['cardownername']
-		inputs[8].value=cardjson['cardbirthday']
-		inputs[9].value=cardjson['cardpassword']
-
-		if(cardjson['cardmf']=="m"){
-			inputs[10].checked=true;
-		}else{
-			inputs[11].checked=true;
-		}
-
-		//select옵션인 요소 카드회사
-	cardcorporateopts.forEach(function(coropt){
-		if(coropt.value==cardjson['cardcorporate']){
-			coropt.selected = true;
-		//카드사할인
-			discountcard.forEach(function(dscard){
-				if(dscard.value==coropt.value){
-					dscard.checked=true;
-					cardcorporate.disabled=true;
-				}})	
-		}})
-
-		//select옵션인 요소 할부	
- var cardinstallmentopts = document.querySelectorAll('[name=cardinstallment] option')
- 	cardinstallmentopts.forEach(function(insopt){
-		if(insopt.value==cardjson['cardinstallment']){
-			insopt.selected = true;
-			document.querySelector('[name=cardinstallment]').disabled=true;
-			}
-		})
-//못바꾸게
-		inputs.forEach(function(thisinput){
-		thisinput.disabled=true;
-		})
-		discountcard.forEach(function(thisinput){
-		thisinput.disabled=true;
-		})
-		
-	}else{
-//체크해제하면 disabled 해제
-		inputs.forEach(function(thisinput){
-		thisinput.disabled=false;
-		})
-		discountcard.forEach(function(thisinput){
-		thisinput.disabled=false;
-		})
-		cardcorporate.disabled=false;
-		document.querySelector('[name=cardinstallment]').disabled=false;
-
+		}	
 	}
 }
-/*3. 마일리지랑 카드 할인 금액 변경*/
-/*4. 가는편, 오는편 버튼*/
-/*5. 즉시결제일때, 예약완료일때 */
-</script>
 
+</script>
+<script type="text/javascript" src="4000_bringcardinfo.js">/*카드정보불러오기*/</script>
+<script type="text/javascript" src="4000_mileage_card.js">/*마일리지 유효성,금액변경 적용*/</script>
+<script>
+//이벤트리스너 할당
+/* 카드정보입력칸 select 바뀔때 */
+cardcorporate.addEventListener('change',function(){
+	discountcardbyselectedcard();
+	discountcardapply(cardcorporate.value);
+	finalpriceapply()
+})
+/* 마일리지 입력할때 */
+mileageinputs[0].addEventListener("input",mileageValid)	
+
+/* 모든입력시마다 재확인 */
+</script>
+</body>
 </html>
