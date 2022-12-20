@@ -20,17 +20,21 @@
 	
 .imgbookingisdone div{
 	font-size: 2em;
+	font-weight:bold;
 	text-align: center;
 	}
+.shadow-primary{
+text-shadow: 1px 1px 3px steelblue ;}
+
 </style>
 <title>예약 완료</title>
 </head>
 <body>
-
+<%@ include file="0000_header.html" %>
 <main class="container">
 <h2>해외항공권 예약</h2>
 <div class="imgbookingisdone">
-<div>예약이 완료되었습니다</div>
+<div class="text-white"><span class="shadow-primary">예약이 완료되었습니다</span></div>
 </div>
 
 <article class="row">
@@ -44,19 +48,25 @@
 </div>
 
 <div class="col">
-<h4>예약한 항공 스케줄</h4>
-	<div class ="row bg-info">
+<h4 class="text-primary">예약한 항공 스케줄</h4>
+	<div class ="row bg-info border">
 		<div class="col"><h4>인천 (INC)</h4> 2023.03.25(토)</div>
 		<div class="col"><h4>후쿠오카 (FUK)</h4> 2023.03.25(토)</div>
 	</div>
-	<div class ="row bg-info">
+	<div class ="row bg-info border">
 		<div class="col"><h4>후쿠오카 (FUK)</h4> 2023.03.30(토)</div>
 		<div class="col"><h4>인천 (INC)</h4>  2023.03.30(토)</div>
 	</div>
 </div>
 </article>
 
+<div class="row">
+<button class="col btn btn-primary mx-2">마이페이지</button>
+<button class="col btn btn-primary mx-2">에어플래닛 메인</button>
+</div>
 
+
+<%@ include file="0000_footer.html" %>
 
 </main>
 </body>

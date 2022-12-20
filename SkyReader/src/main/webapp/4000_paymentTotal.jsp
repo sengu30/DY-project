@@ -11,7 +11,13 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-	.smallinfo{font-size: 80%;color:gray;}
+.smallinfo{font-size: 80%;color:gray;}
+
+a:link {
+	text-decoration: none;
+	font-size: 80%;
+	color:gray;
+}
 </style>
 
 
@@ -19,21 +25,24 @@ input[type="number"]::-webkit-inner-spin-button {
 <meta charset="UTF-8">
 <title>결제</title>
 </head>
-<body onload="">
+<body>
 <%@ include file="0000_header.html" %>
-<hr>
 <main class="container">
 <h2>선택한 항공 스케줄</h2>
 <%@ include file="4001_scheduleDetail.jsp" %>
 <div class="row">
-<div class="col" ><button type="button" class="btn btn-primary" style="width: 100%">가는편</button></div>
-<div class="col" ><button type="button" class="btn btn-secondary" style="width: 100%">오는편</button></div></div>
+<div class="col" ><button type="button" class="btn btn-primary" style="width: 100%" value="ticketgo" onclick="switchinfo(this)">가는 편</button></div>
+<div class="col" ><button type="button" class="btn btn-secondary" style="width: 100%" value="ticketcome" onclick="switchinfo(this)">오는 편</button></div></div>
 <table class="table table-bordered">
 <thead>
 <tr class="table-secondary"><th>구분</th><th>인원</th><th>선택사항1</th><th>선택사항2</th><th>합계</th></tr>
 </thead>
-<tr><td>성인</td><td>1명</td><td>비즈니스석</td><td>수하물추가</td><td>600,000</td></tr>
+<colgroup><col style="width:10%"><col style="width:10%"><col style="width:20%"><col style="width:20%"><col style="width:20%"></colgroup>
+<tbody id="optioninfotbody">
+<tr><td>성인</td><td>1명</td><td>비즈니스석</td><td>수하물 추가</td><td>400,000</td></tr>
+<tr><td>아동</td><td>1명</td><td>비즈니스석</td><td>-</td><td>100,000</td></tr>
 <tr><th class="table-secondary" colspan="2">총 요금(가는 편)</th><td colspan="3">600,000원</td></tr>
+</tbody>
 </table>
 <div class="row justify-content-between">
 <div class="col-4"><h5>총 예상 요금</h5></div><div class="col-4"><h5>1,000,000원</h5></div>
@@ -44,13 +53,32 @@ input[type="number"]::-webkit-inner-spin-button {
 <li><strong>[운항안내]</strong> COVID-19 영향으로 국토교통부 방침에 의해 탑승율 제한, 사전 공지 없이 비운항 또는 스케줄이 변경 될 수 있습니다.</li>
 </ul>
 <br><br>
-<form class="needs-validation" novalidate>
+<form class="needs-validation" action="4005_rule2.html" novalidate>
 <%@ include file="4004_1_passengerInfo.jsp" %>
+<label><input class="form-check-input" type="checkbox" onchange="bringPassengerinfo()">탑승객 정보 불러오기</label><br>
+<strong>탑승객 영문이름, 생년월일, 성별 기재 시 주의사항</strong>
+<ul class="smallinfo">
+<li>탑승자의 영문성명, 생년월일, 성별, 국적은 여권과 동일해야 하며, 예약 후 변경이 불가합니다.
+<li>(임의로 등록(FAKE NAME)하는 경우 모든 예약이 취소되거나 수수료가 부과될 수 있습니다.)
+<li>입력한 여권 정보가 다르거나 또는 누락, 분실 신고된 여권, 사용된 단수 여권 정보로 입력한 경우 항공편 탑승 및 현지 입국이 거절 될 수 있습니다.
+<li>정확한 본인 영문 이름은 정부24(나의 생활정보)에서 확인할 수 있습니다. (간편인증 또는 공동,금융인증서 필요) 조회하기
+<li>영문 성이 한 글자인 경우, 예약 전 유선 및 톡집사로 문의 바랍니다. (예시 : 오길동 – O/GILDONG)
+</ul>
+<ul class="smallinfo">
+<strong>탑승객소아/유아 탑승 안내</strong>
+<li>귀국일 기준으로 만 12세 이상인 소아와 만 2세가 넘는 유아는 추가 차액이 발생하며 항공사 규정에따라 발권이 불가할 수 있으니 결제전 문의바랍니다.
+<li>혼자 여행하는 만 18세 미만의 미성년자는 추가 요금이 발생할 수 있으므로 결제전 톡집사 로 문의바랍니다 .
+<li>혼자 여행하는 16세 미만의 비동반 소아는 추가 요금이 발생할 수 있으므로 톡집사로 문의바랍니다.
+<li>만 20세 미만의 탑승객이 유아/소아와 동반할 경우, 예약 후 톡집사로 문의 바랍니다.
+</ul><br><br>
+
+
 <h2>결제정보</h2>
 <div class="row">
-<div class="col" ><button type="button" class="btn btn-primary" style="width: 100%">즉시 결제</button></div>
-<div class="col" ><button type="button" class="btn btn-secondary" style="width: 100%">예약완료</button></div></div>
+<div class="col" ><button type="button" class="btn btn-primary payreserveswitch" style="width: 100%">즉시 결제</button></div>
+<div class="col" ><button type="button" class="btn btn-secondary payreserveswitch" style="width: 100%">예약완료</button></div></div>
 <br>
+<fieldset id="paynow">
 <div class="row .justify-content-start">
 <h5 class="col-3">마일리지 사용하기</h5>
 	<div class="input-group col" id="mileageinput" required>
@@ -88,14 +116,20 @@ input[type="number"]::-webkit-inner-spin-button {
 </div>
 
 
-<label><input type="checkbox" onchange="bringcardinfo(this)">카드정보 불러오기</label>
+<label><input class="form-check-input" type="checkbox" onchange="bringcardinfo(this)">카드정보 불러오기</label>
 <%@ include file="4005_cardinfo.jsp" %>
+</fieldset>
 
-<label class="fs-5"><input type="checkbox">항공권 규정 확인 및 약관 전체 동의</label>
-<ul type="none" class="border">
-<li><label><input class ="form-check-input" type="checkbox" required>[필수] 항공사 요금규정(변경, 환불, 수하물 등)</label>
-<li><label><input class ="form-check-input" type="checkbox" required>[필수] 에어플래닛 이용규정(예약, 결제, 여권/비자, 취급수수료 등)</label>
-<li><label><input class ="form-check-input" type="checkbox" required>[필수] 개인정보 수집 및 이용</label>
+
+<label class="fs-5"><input type="checkbox" class ="form-check-input" onclick="consentAll(this)">항공권 규정 확인 및 약관 전체 동의</label>
+
+<ul type="none" class="border" id="consentAgreements">
+	<li><label><input class ="form-check-input" type="checkbox" required>
+		<a href="#" onclick="popup('4005_rule1.html');return false"> [필수] 항공사 요금규정(변경, 환불, 수하물 등)</a></label>
+	<li><label><input class ="form-check-input" type="checkbox" required>
+		<a href="#" onclick="popup('4005_rule2.html');return false"> [필수] 에어플래닛 이용규정(예약, 결제, 여권/비자, 취급수수료 등)</a></label>
+	<li><label><input class ="form-check-input" type="checkbox" required>
+		<a href="#" onclick="popup('4005_rule3.html');return false"> [필수] 개인정보 수집 및 이용</a></label>
 </ul>
 
 
@@ -123,6 +157,25 @@ input[type="number"]::-webkit-inner-spin-button {
 	  })
 	})()
 
+//약관보기 팝업
+function popup(href) {
+	window.open(href,href,'width=700px,height=600px, status=no,menubar=no,toolbar=no,top=100px,left=100px');
+}
+//약관 전체 동의
+function consentAll(self){
+var consentAgreements = document.querySelectorAll('#consentAgreements input')
+	if(self.checked==true){
+		consentAgreements.forEach(function(box1){
+			box1.checked=true;
+		})
+	}else{
+		consentAgreements.forEach(function(box1){
+			box1.checked=false;
+		})
+	}
+}
+	
+	
  var discountcard = document.querySelectorAll('[name=discountcard]')
  var cardcorporate= document.querySelector('[name=cardcorporate]')
  var cardcorporateopts = document.querySelectorAll('[name=cardcorporate] option')
@@ -155,7 +208,23 @@ function discountcardbyselectedcard() {
 	}
 }
 
+/* 탑승자정보 불러오기 */
+function bringPassengerinfo(){	//db에서 정보 불러와서 넣기
+ 	let psginputs =document.querySelectorAll('#passengerinfoset input')
+ 	psginputs[0].value='김박박';
+ 	psginputs[1].value='Kim';
+ 	psginputs[2].value='bakbak';
+ 	psginputs[3].value='2222-10-01';
+ 	if('m'=='f'){psginputs[4].checked=true;}
+ 	if('f'=='f'){psginputs[5].checked=true;}
+ 	psginputs[6].value='m485465312';
+ 	psginputs[7].value='2023-10-01';
+ 	psginputs[8].value='한국';
+ 	psginputs[9].value='북한';
+ }
+ 
 </script>
+<script type="text/javascript" src="4000_switchInfo.js">/*버튼눌러서 가는편 오는편 바꾸기*/</script>
 <script type="text/javascript" src="4000_bringcardinfo.js">/*카드정보불러오기*/</script>
 <script type="text/javascript" src="4000_mileage_card.js">/*마일리지 유효성,금액변경 적용*/</script>
 <script>

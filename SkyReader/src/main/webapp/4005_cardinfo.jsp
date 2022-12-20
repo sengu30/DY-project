@@ -16,7 +16,7 @@
 </tr>
 <tr><td>카드종류</td><td><select name="cardcorporate" class="form-select" required><option selected value="" disabled>카드를 선택하세요</option><option>삼성카드</option><option>신한카드</option><option>롯데카드</option><option>현대카드</option><option>비씨카드</option><option>국민카드</option><option>하나카드</option></select></td>
 <td>할부기간</td><td><select name="cardinstallment" class="form-select"><option value="1">일시불</option><option value="2">2개월</option><option value="3">3개월</option><option value="6">6개월</option><option value="12">12개월</option></select></td></tr>
-<tr><td>카드번호</td><td><input name="cardnumber" class="form-control" required></td>
+<tr><td>카드번호</td><td><input type="number" name="cardnumber" class="form-control" max="9999999999999999" required></td>
 <td>유효기간</td>
 		<td><div class="input-group">
 			<input name="cardYY" class="form-control " type="number" min="22" max="99" placeholder="년" required>
