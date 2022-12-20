@@ -20,7 +20,6 @@ a:link {
 }
 </style>
 
-
 <link href="bs-custom.css" rel="stylesheet" >
 <meta charset="UTF-8">
 <title>결제</title>
@@ -31,28 +30,45 @@ a:link {
 <h2>선택한 항공 스케줄</h2>
 <%@ include file="4001_scheduleDetail.jsp" %>
 <div class="row">
-<div class="col" ><button type="button" class="btn btn-primary" style="width: 100%" value="ticketgo" onclick="switchinfo(this)">가는 편</button></div>
-<div class="col" ><button type="button" class="btn btn-secondary" style="width: 100%" value="ticketcome" onclick="switchinfo(this)">오는 편</button></div></div>
-<table class="table table-bordered">
+<div class="col" ><button type="button" class="btn btn-primary showswitch" style="width: 100%">가는 편</button></div>
+<div class="col" ><button type="button" class="btn btn-secondary showswitch" style="width: 100%">오는 편</button></div></div>
+<table class="table table-bordered showswitchtarget">
 <thead>
 <tr class="table-secondary"><th>구분</th><th>인원</th><th>선택사항1</th><th>선택사항2</th><th>합계</th></tr>
 </thead>
 <colgroup><col style="width:10%"><col style="width:10%"><col style="width:20%"><col style="width:20%"><col style="width:20%"></colgroup>
-<tbody id="optioninfotbody">
+<tbody>
 <tr><td>성인</td><td>1명</td><td>비즈니스석</td><td>수하물 추가</td><td>400,000</td></tr>
 <tr><td>아동</td><td>1명</td><td>비즈니스석</td><td>-</td><td>100,000</td></tr>
-<tr><th class="table-secondary" colspan="2">총 요금(가는 편)</th><td colspan="3">600,000원</td></tr>
+<tr><th class="table-secondary" colspan="2">총 요금(가는 편)</th><td colspan="3">500,000원</td></tr>
 </tbody>
 </table>
+
+<table class="table table-bordered showswitchtarget" style="display:none;">
+<thead>
+<tr class="table-secondary"><th>구분</th><th>인원</th><th>선택사항1</th><th>선택사항2</th><th>합계</th></tr>
+</thead>
+<colgroup><col style="width:10%"><col style="width:10%"><col style="width:20%"><col style="width:20%"><col style="width:20%"></colgroup>
+<tbody>
+<tr><td>성인</td><td>1명</td><td>일반석</td><td>-</td><td>400,000</td></tr>
+<tr><td>아동</td><td>1명</td><td>일반석</td><td>-</td><td>200,000</td></tr>
+<tr><th class="table-secondary" colspan="2">총 요금(오는 편)</th><td colspan="3">600,000원</td></tr>
+</tbody>
+</table>
+
 <div class="row justify-content-between">
 <div class="col-4"><h5>총 예상 요금</h5></div><div class="col-4"><h5>1,000,000원</h5></div>
 </div>
-<br>
+
 <ul class="smallinfo"><strong>예약 시 주의사항</strong>
 <li><strong>[가는편/오는편 개별 예약]</strong>예약 완료 시 가는편/오는편 예약번호가 개별 생성되며, 각 예약번호의 마이페이지를 통해 결제/변경/취소를 진행해야 합니다. (개 별 예약 규정 적용)</li>
 <li><strong>[운항안내]</strong> COVID-19 영향으로 국토교통부 방침에 의해 탑승율 제한, 사전 공지 없이 비운항 또는 스케줄이 변경 될 수 있습니다.</li>
 </ul>
 <br><br>
+
+
+
+
 <form class="needs-validation" action="4005_rule2.html" novalidate>
 <%@ include file="4004_1_passengerInfo.jsp" %>
 <label><input class="form-check-input" type="checkbox" onchange="bringPassengerinfo()">탑승객 정보 불러오기</label><br>
@@ -75,10 +91,10 @@ a:link {
 
 <h2>결제정보</h2>
 <div class="row">
-<div class="col" ><button type="button" class="btn btn-primary payreserveswitch" style="width: 100%">즉시 결제</button></div>
-<div class="col" ><button type="button" class="btn btn-secondary payreserveswitch" style="width: 100%">예약완료</button></div></div>
+<div class="col" ><button type="button" class="btn btn-primary showswitch" style="width: 100%">즉시 결제</button></div>
+<div class="col" ><button type="button" class="btn btn-secondary showswitch" style="width: 100%">예약완료</button></div></div>
 <br>
-<fieldset id="paynow">
+<fieldset class="showswitchtarget">
 <div class="row .justify-content-start">
 <h5 class="col-3">마일리지 사용하기</h5>
 	<div class="input-group col" id="mileageinput" required>
@@ -114,12 +130,13 @@ a:link {
 </div>
 <div class="col text-center fs-5">최종결제금액<h2 class="text-primary" id="finalprice">800,000</h2>원</div>
 </div>
-
-
+<br>
 <label><input class="form-check-input" type="checkbox" onchange="bringcardinfo(this)">카드정보 불러오기</label>
 <%@ include file="4005_cardinfo.jsp" %>
+
 </fieldset>
 
+<br>
 
 <label class="fs-5"><input type="checkbox" class ="form-check-input" onclick="consentAll(this)">항공권 규정 확인 및 약관 전체 동의</label>
 
@@ -222,7 +239,23 @@ function bringPassengerinfo(){	//db에서 정보 불러와서 넣기
  	psginputs[8].value='한국';
  	psginputs[9].value='북한';
  }
- 
+
+/* 나중에결제 선택했을때 카드 입력안해도 validate안걸리게 required 상태 바꾸는거 */
+function paynow(){
+	let form = document.querySelector('form');
+	let filset = document.querySelectorAll('fieldset.showswitchtarget input,fieldset.showswitchtarget select');
+	form.classList.remove('was-validated');
+	console.log(filset)
+	filset.forEach(function(self){
+		if(self.required==true){
+			self.required=false
+			}else{
+				self.required=true
+			}
+	})
+	filset[7].required=false;
+	
+}
 </script>
 <script type="text/javascript" src="4000_switchInfo.js">/*버튼눌러서 가는편 오는편 바꾸기*/</script>
 <script type="text/javascript" src="4000_bringcardinfo.js">/*카드정보불러오기*/</script>
@@ -238,7 +271,26 @@ cardcorporate.addEventListener('change',function(){
 /* 마일리지 입력할때 */
 mileageinputs[0].addEventListener("input",mileageValid)	
 
-/* 모든입력시마다 재확인 */
+/* 가는편vs오는편 */
+showswitch[0].addEventListener('click',function(){
+	showswitching('0','0','','','','');	
+	showswitching('1','0','none','','','');	
+}) 	
+showswitch[1].addEventListener('click',function(){
+	showswitching('1','1','','','','');	
+	showswitching('0','1','none','','','');	
+}) 	
+
+/* 지금결제vs나중에 */
+showswitch[2].addEventListener('click',function(){
+	showswitching('2','2','','finalsubmit','결제 완료하기','4006_book_success.jsp');
+	paynow()
+}) 	
+showswitch[3].addEventListener('click',function(){
+	showswitching('2','3','none','finalsubmit','예약 완료하기','4005_rule3.html');	
+	paynow()
+}) 	
+
 </script>
 </body>
 </html>

@@ -37,7 +37,7 @@ text-shadow: 1px 1px 3px steelblue ;}
 <div class="text-white"><span class="shadow-primary">예약이 완료되었습니다</span></div>
 </div>
 
-<article class="row">
+<article class="row" style="min-height: 400px">
 <div class="col">
 <b>예약번호 : adsfasdf</b>
 <p>결제마감일 이전에 결제하지 않은 경우 동일요금, 조건으로 항공권 구매가 불가능합니다. 마감일은 항공사 사정으로 변경될 수 있으니 24시간 이내에 꼭 재확인 해주세요.</p>
@@ -47,25 +47,25 @@ text-shadow: 1px 1px 3px steelblue ;}
 </div>
 </div>
 
-<div class="col">
+<div class="col mx-1">
 <h4 class="text-primary">예약한 항공 스케줄</h4>
-	<div class ="row bg-info border">
+	<div class ="row bg-info border m-2">
 		<div class="col"><h4>인천 (INC)</h4> 2023.03.25(토)</div>
 		<div class="col"><h4>후쿠오카 (FUK)</h4> 2023.03.25(토)</div>
 	</div>
-	<div class ="row bg-info border">
+	<div class ="row bg-info border m-2">
 		<div class="col"><h4>후쿠오카 (FUK)</h4> 2023.03.30(토)</div>
 		<div class="col"><h4>인천 (INC)</h4>  2023.03.30(토)</div>
 	</div>
 </div>
 </article>
 
-<div class="row">
+<div class="row mb-5">
 <button class="col btn btn-primary mx-2">마이페이지</button>
 <button class="col btn btn-primary mx-2">에어플래닛 메인</button>
 </div>
 
-
+<hr>
 <%@ include file="0000_footer.html" %>
 
 </main>
