@@ -7,21 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="BpkSlider_bpk-slider__OTc5M BpkSlider_bpk-slider--range__M2NjN" style="position: relative;">
-<div class="BpkSlider_bpk-slider__bar__MTgzZ BpkSlider_bpk-slider__bar__MTgzZ-0" style="position: absolute; left: 0px; right: 208px;"></div>
-<div class="BpkSlider_bpk-slider__bar__MTgzZ BpkSlider_bpk-slider__bar__MTgzZ-1" style="position: absolute; left: 0px; right: -0.144545px;"></div>
-<div class="BpkSlider_bpk-slider__bar__MTgzZ BpkSlider_bpk-slider__bar__MTgzZ-2" style="position: absolute; left: 208.145px; right: 0px;"></div><div class="BpkSlider_bpk-slider__handle__OWIzN BpkSlider_bpk-slider__handle__OWIzN-0 " tabindex="0" role="slider" aria-orientation="horizontal" aria-valuenow="0" aria-valuemin="0" aria-valuemax="1439" style="position: absolute; touch-action: none; z-index: 1; left: 0px;"></div><div class="BpkSlider_bpk-slider__handle__OWIzN BpkSlider_bpk-slider__handle__OWIzN-1 " tabindex="0" role="slider" aria-orientation="horizontal" aria-valuenow="1440" aria-valuemin="0" aria-valuemax="1439" style="position: absolute; touch-action: none; z-index: 2; left: 208.145px;"></div></div>
 <form class="row g-3 needs-validation" novalidate>
-
   <div class="col-md-4">
     <label for="validationCustom01" class="form-label">First name</label>
     <input type="text" class="form-control" value="Mark" required>
+    <div class="invalid-feedback">
+      Looks bad!
+    </div>
   </div>
   <div class="col-md-4">
-    <label for="validationCustom02" class="form-label">Last name</label>
-    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-    <div class="valid-feedback">
-      Looks good!
+    <label class="form-label">Last name</label>
+    <input class="form-control"value="Otto" required>
+    <div class="invalid-feedback">
+      Looks bad!
     </div>
   </div>
   <div class="col-md-4">
@@ -29,17 +27,13 @@
     <div class="input-group has-validation">
       <span class="input-group-text" id="inputGroupPrepend">@</span>
       <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-      <div class="invalid-feedback">
-        Please choose a username.
-      </div>
+
     </div>
   </div>
   <div class="col-md-6">
     <label for="validationCustom03" class="form-label">City</label>
     <input type="text" class="form-control" id="validationCustom03" required>
-    <div class="invalid-feedback">
-      Please provide a valid city.
-    </div>
+
   </div>
   <div class="col-md-3">
     <label for="validationCustom04" class="form-label">State</label>
@@ -47,10 +41,11 @@
       <option selected disabled value="">Choose...</option>
       <option>...</option>
     </select>
+      </div>
     <div class="invalid-feedback">
       Please select a valid state.
     </div>
-  </div>
+
   <div class="col-md-3">
     <label for="validationCustom05" class="form-label">Zip</label>
     <input type="text" class="form-control" id="validationCustom05" required>
@@ -73,33 +68,25 @@
     <button class="btn btn-primary" type="submit">Submit form</button>
   </div>
 </form>
-</body>
-<script type="text/javascript">
-/* (() => {
+
+<script>
+(function () {
 	  'use strict'
+	  var forms = document.querySelectorAll('.needs-validation')
 
-	  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-	  const forms = document.querySelectorAll('.needs-validation')
+	  Array.prototype.slice.call(forms)
+	    .forEach(function (form) {
+	      form.addEventListener('submit', function (event) {
+	        if (!form.checkValidity()) {
+	          event.preventDefault()
+	          event.stopPropagation()
+	        }
 
-	  // Loop over them and prevent submission
-	  Array.from(forms).forEach(form => {
-	    form.addEventListener('submit', event => {
-	      if (!form.checkValidity()) {
-	        event.preventDefault()
-	        event.stopPropagation()
-	      }
-
-	      form.classList.add('was-validated')
-	    }, false)
-	  })
-	})() */
-	
-var required = document.querySelectorAll('.needs-validation')
-required.forEach(function(rr){
-	rr.addEventListener('submit', function(event){
-        alert('Hello world, '+ rr.value);
-    },false);
-})
-	
+	        form.classList.add('was-validated')
+	      }, false)
+	    })
+	})()
 </script>
+</body>
+
 </html>

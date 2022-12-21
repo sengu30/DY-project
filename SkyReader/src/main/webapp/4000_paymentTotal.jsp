@@ -140,18 +140,34 @@ a:link {
 
 <label class="fs-5"><input type="checkbox" class ="form-check-input" onclick="consentAll(this)">항공권 규정 확인 및 약관 전체 동의</label>
 
+<style>
+#consentAgreements label{
+	position:relative;
+	display:block;
+	}
+#consentAgreements div{
+	position:absolute;
+	top:0;
+	left:500px;
+	}
+</style>
+
+
 <ul type="none" class="border" id="consentAgreements">
-	<li><label><input class ="form-check-input" type="checkbox" required>
+	<li><label><input class ="form-check-input" type="checkbox" required>		<div class="invalid-feedback">항공권 규정 및 약관에 동의해주세요 </div>
 		<a href="#" onclick="popup('4005_rule1.html');return false"> [필수] 항공사 요금규정(변경, 환불, 수하물 등)</a></label>
-	<li><label><input class ="form-check-input" type="checkbox" required>
+	<li><label><input class ="form-check-input" type="checkbox" required>		<div class="invalid-feedback">항공권 규정 및 약관에 동의해주세요 </div>
 		<a href="#" onclick="popup('4005_rule2.html');return false"> [필수] 에어플래닛 이용규정(예약, 결제, 여권/비자, 취급수수료 등)</a></label>
-	<li><label><input class ="form-check-input" type="checkbox" required>
+	<li><label><input class ="form-check-input" type="checkbox" required> 		<div class="invalid-feedback">항공권 규정 및 약관에 동의해주세요 </div>
 		<a href="#" onclick="popup('4005_rule3.html');return false"> [필수] 개인정보 수집 및 이용</a></label>
 </ul>
 
 
 <div class="row"><button type="submit" id="finalsubmit" class="btn btn-primary btn-lg">결제 완료하기</button></div>
+
 </form>
+
+
 <br>
 <br>
 <br>
@@ -163,6 +179,8 @@ a:link {
 (() => {
 	  'use strict'
 	  const forms = document.querySelectorAll('.needs-validation')
+	  const submit = document.querySelector('#finalsubmit')
+	  
 	  Array.from(forms).forEach(form => {
 	    form.addEventListener('submit', event => {
 	      if (!form.checkValidity()) {
@@ -170,6 +188,9 @@ a:link {
 	        event.stopPropagation()
 	      }
 	      form.classList.add('was-validated')
+	      submit.classList.remove('btn-primary')
+	      submit.classList.add('btn-danger')
+	      submit.classList.add('text-white')
 	    }, false)
 	  })
 	})()

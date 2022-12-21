@@ -7,9 +7,9 @@
 <table class="table table-bordered">
 <tr><td>이름</td><td>이메일</td><td>휴대전화</td></tr>
 <tr>
-<td><input class="form-control" required></td>
-<td><div class="input-group"><input type="text" class="form-control" required><span class="input-group-text">@</span><input type="text" class="form-control" required></div></td>
-<td><div class="input-group"><input maxlength="3" class="form-control" required><span class="input-group-text">-</span><input maxlength="4" class="form-control " required><span class="input-group-text">-</span><input maxlength="4" class="form-control" required></div></td>
+<td><input class="form-control" required><div class="invalid-feedback"> 이름을 입력해주세요.   </div></td>
+<td><div class="input-group"><input type="text" class="form-control" required><span class="input-group-text">@</span><input type="text" class="form-control" required><div class="invalid-feedback"> 이메일 주소를 입력해주세요.   </div></div></td>
+<td><div class="input-group"><input maxlength="3" class="form-control" required><span class="input-group-text">-</span><input maxlength="4" class="form-control " required><span class="input-group-text">-</span><input maxlength="4" class="form-control" required><div class="invalid-feedback">휴대전화 번호를 바르게 입력해주세요.</div></div></td>
 </tr>	
 </table>
 <ul class="smallinfo">
