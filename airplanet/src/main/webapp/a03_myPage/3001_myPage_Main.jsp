@@ -12,7 +12,7 @@
 img.user{
 	width:70%;
 }
-a{
+.astyle{
 	color:black;
 	text-decoration-line: none;
 }
@@ -35,21 +35,21 @@ a{
 	border-radius: 12px;
 }
 </style>
-<body >
+<body>
 	<div class="container-fluid">
-	<%@ include file="/header_logout.html" %>
+	<%@ include file="/header.jsp" %>
 	  <div class="row no-gutters">
 	  	<div class="col-1"></div>
 	    <div class="col-3" style="text-align:center;font-size:25px;">
 	     <div class="p-3 border-0 bg-white">
-	     	<img src="/b01_img/user.PNG" class="user"><br>
+	     	<img src="../b01_img/user.PNG" class="user"><br>
 	     	<h1><b>안녕하세요!</b></h1>
-	     	<p>XXXX@email.com<p>
+	     	<p>${reg2.email}<p>
 	     </div>
-	     <div class="border-0 bg-white" style="margin-top:30px;"><a href="3002_input_Info.jsp">여행객 정보 입력</a></div><hr>
-	     <div class="border-0 bg-white"><a href="3009_cardInfo_input.jsp">결제 정보 입력</a></div><hr>
-	     <div class="border-0 bg-white"><a href="3004_show_Info.jsp">내 예약</a></div><hr>
-	     <div class="border-0 bg-white"><a href="#">가격 변동 알림</a></div><hr>
+	     <div class="border-0 bg-white" style="margin-top:30px;"><a href="3002_input_Info.jsp" class="astyle">여행객 정보 입력</a></div><hr>
+	     <div class="border-0 bg-white"><a href="3009_cardInfo_input.jsp" class="astyle">결제 정보 입력</a></div><hr>
+	     <div class="border-0 bg-white"><a href="3004_show_Info.jsp" class="astyle">내 예약</a></div><hr>
+	     <div class="border-0 bg-white"><a href="#" class="astyle">가격 변동 알림</a></div><hr>
 	     <div class="border-0 bg-white">계정</div><hr>
 	     <input class="btnOut" type="button" value="로그아웃" onclick="logout()"/>
 	    </div>
@@ -57,7 +57,7 @@ a{
 	    <div class="col-5" style="font-size:25px;">
 	    	<div class="p-3 border-0 bg-white" style="text-align:center;"><h1><b>계정</b></h1></div><br>
 	     	<div class="p-3 border-0 bg-secondary bg-opacity-50">일반정보</div>
-	     	<div class="p-3 border-0 bg-white"><p style="font-size:15px">이메일</p>XXXXX@email.com</div>
+	     	<div class="p-3 border-0 bg-white"><p style="font-size:15px">이메일</p>${reg2.email}</div>
 	     	<div class="p-3 border-0 bg-secondary bg-opacity-50">구독</div>
 	     	<div class="p-3 border-0 bg-white">
 	     		<input style="zoom:2.0;" type="checkbox" name="sub">
@@ -73,9 +73,9 @@ a{
 	     	</div>
 	     	<hr style="margin-top:50px;">
 	     	<div class="p-3 border-0 bg-secondary bg-opacity-50" style="text-align:float;">계정</div>
-	     	<div class="p-3 border-0 bg-white"><a href="#">데이터 다운로드</a></div>
+	     	<div class="p-3 border-0 bg-white"><a href="#" class="astyle">데이터 다운로드</a></div>
 	     	<hr>
-	     	<div class="p-3 border-0 bg-white"><a href="#">계정 삭제</a></div>
+	     	<div class="p-3 border-0 bg-white"><a href="#" class="astyle">계정 삭제</a></div>
 	    </div>
 	    <div class="col-1"></div>
 	  </div>
@@ -84,8 +84,11 @@ a{
 <%@ include file="/0000_footer.html" %>
 </body>
 <script>
+var regId ='${reg2.email}';
 function logout(){
-	confirm("로그아웃 하시겠습니까?")
+	if(confirm("로그아웃하시겠습니까?")){
+		location.href="/a01_member/1400_signout.jsp"
+     }
 }
 </script>
 </html>

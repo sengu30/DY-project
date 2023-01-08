@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="java.util.*" 
+    import="vo.AirMember"
+    import="dao.C_UpdateCardInfo"
    %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +16,7 @@
 img.user{
 	width:70%;
 }
-a{
+.astyle{
 	color:black;
 	text-decoration-line: none;
 }
@@ -55,26 +59,27 @@ a{
 }
 </style>
 <body>
-<%@ include file="/header_logout.html" %>
+<%@ include file="/header.jsp" %>
 <br><br>
 	<div class="container-fluid">
 	  <div class="row no-gutters">
 	  	<div class="col-1"></div>
 	    <div class="col-3" style="text-align:center;font-size:25px;">
 	     <div class="p-3 border-0 bg-white">
-	     	<img src="/b01_img/user.PNG" class="user"><br>
+	     	<img src="../b01_img/user.PNG" class="user"><br>
 	     	<h1><b>안녕하세요!</b></h1>
-	     	<p>XXXX@email.com<p>
+	     	<p>${reg2.email}<p>
 	     </div>
-	     <div class="border-0 bg-white" style="margin-top:30px;"><a href="3002_input_Info.jsp">여행객 정보 입력</a></div><hr>
-	     <div class="border-0 bg-white"><a href="3009_cardInfo_input.jsp">결제 정보 입력</a></div><hr>
-	     <div class="border-0 bg-white"><a href="3004_show_Info.jsp">내 예약</a></div><hr>
-	     <div class="border-0 bg-white"><a href="#">가격 변동 알림</a></div><hr>
-	     <div class="border-0 bg-white"><a href="#">계정</a></div><hr>
+	     <div class="border-0 bg-white" style="margin-top:30px;"><a href="3002_input_Info.jsp" class="astyle">여행객 정보 입력</a></div><hr>
+	     <div class="border-0 bg-white"><a href="3009_cardInfo_input.jsp" class="astyle">결제 정보 입력</a></div><hr>
+	     <div class="border-0 bg-white"><a href="3004_show_Info.jsp" class="astyle">내 예약</a></div><hr>
+	     <div class="border-0 bg-white"><a href="#" class="astyle">가격 변동 알림</a></div><hr>
+	     <div class="border-0 bg-white">계정</div><hr>
 	     <input class="btnOut" type="button" value="로그아웃" onclick="logout()"/>
 	    </div>
 	    <div class="col-2"></div>
 	    <div class="col-5 mt-5" style="font-size:25px;">
+	    <form action="3009_cardInfo_input_check.jsp" method="post">
 	    	<div class="p-3 border-0 bg-white mb-5" style="text-align:center;"><h1><b>결제 정보 입력</b></h1></div>
 	    	<table class="table table-bordered mt-5">
 				<tr><td>카드구분</td>
@@ -95,10 +100,11 @@ a{
 				<tr><td>소유주이름</td><td><input class="field" name="ownerName"></td><td>생년월일</td><td><input class="field" name="birth" type="date"></td></tr>
 				<tr><td>카드비밀번호</td><td><input class="field" name="pass" type="password" placeholder="앞 두자리만 입력하세요" maxlength="2"></td>
 				<td>성별</td><td>
-					<label><input type="radio" name="mf" value="male" checked>남성</label>&nbsp;&nbsp;&nbsp;
-					<label><input type="radio" name="mf" value="female">여성</label></td></tr>
+					<label><input type="radio" name="mf" value="m" checked>남성</label>&nbsp;&nbsp;&nbsp;
+					<label><input type="radio" name="mf" value="f">여성</label></td></tr>
 			</table>
-			<input id="save" type="button" value="저장하기" class="btnSave"/>
+			<input id="save" type="submit" value="저장하기" class="btnSave"/>
+			</form>
 	    </div>
 	    <div class="col-1"></div>
 	  </div>
@@ -108,8 +114,11 @@ a{
 </body>
 <script type="text/javascript">
 // 로그아웃
+var regId ='${reg2.email}';
 function logout(){
-	confirm("로그아웃 하시겠습니까?")
+	if(confirm("로그아웃하시겠습니까?")){
+		location.href="/a01_member/1400_signout.jsp"
+     }
 }
 
 // DOM 객체 생성

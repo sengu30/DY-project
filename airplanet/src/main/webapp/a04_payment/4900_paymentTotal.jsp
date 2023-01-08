@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"
     import="java.util.*"
     %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,21 +28,31 @@ a:link {
 </head>
 <body>
 <main class="container">
-<%@ include file="/header.jsp" %>
+<jsp:include page="/header.jsp"></jsp:include>
 <h2>선택한 항공 스케줄</h2>
 <%@ include file="4001_scheduleDetail.jsp" %>
 <div class="row">
 <div class="col" ><button type="button" class="btn btn-primary showswitch" style="width: 100%">가는 편</button></div>
-<div class="col" ><button type="button" class="btn btn-secondary showswitch" style="width: 100%">오는 편</button></div></div>
+<c:if test ="${not empty tlist2 }" >
+	<div class="col" ><button type="button" class="btn btn-secondary showswitch" style="width: 100%">오는 편</button></div></div>
+</c:if>
 <table class="table table-bordered showswitchtarget">
 <thead>
 <tr class="table-secondary"><th>구분</th><th>인원</th><th>선택사항1</th><th>선택사항2</th><th>합계</th></tr>
 </thead>
 <colgroup><col style="width:10%"><col style="width:10%"><col style="width:20%"><col style="width:20%"><col style="width:20%"></colgroup>
 <tbody>
-<tr><td>성인</td><td>1명</td><td>비즈니스석</td><td>수하물 추가</td><td>400,000</td></tr>
-<tr><td>아동</td><td>1명</td><td>비즈니스석</td><td>-</td><td>100,000</td></tr>
-<tr><th class="table-secondary" colspan="2">총 요금(가는 편)</th><td colspan="3">500,000원</td></tr>
+<c:set var="costgo" value="0" />
+<c:forEach var="eachticket" items="${flist }" varStatus="vv" >
+	<c:if test="${flist.get(0).departLocation eq eachticket.departLocation }">
+		<tr><td>${fn:substring(eachticket.optioncode,0,3) }➡${fn:substring(eachticket.optioncode,3,6) }</td>
+		<td>${cnt }명</td><td>${eachticket.classStr }</td><td>${eachticket.baggageStr }</td>
+		<td><fmt:formatNumber value="${(eachticket.standardFee + eachticket.classfee+ eachticket.baggage)*cnt}" pattern="#,###" /></td>		</tr>
+	<c:set var="costgo" value="${costgo+ eachticket.standardFee + eachticket.classfee+ eachticket.baggage}" />
+	</c:if>
+</c:forEach>
+<c:set var="costgo" value="${costgo*cnt}" />
+<tr><th class="table-secondary" colspan="2">총 요금(가는 편)</th><td colspan="3"><fmt:formatNumber value="${costgo}" pattern="#,###" />원</td></tr>
 </tbody>
 </table>
 
@@ -50,14 +62,24 @@ a:link {
 </thead>
 <colgroup><col style="width:10%"><col style="width:10%"><col style="width:20%"><col style="width:20%"><col style="width:20%"></colgroup>
 <tbody>
-<tr><td>성인</td><td>1명</td><td>일반석</td><td>-</td><td>400,000</td></tr>
-<tr><td>아동</td><td>1명</td><td>일반석</td><td>-</td><td>200,000</td></tr>
-<tr><th class="table-secondary" colspan="2">총 요금(오는 편)</th><td colspan="3">600,000원</td></tr>
+<c:set var="costback" value="0" />
+<c:if test="${not empty tlist2 }" >
+<c:forEach var="eachticket" items="${flist }" varStatus="vv" >
+	<c:if test="${flist.get(flist.size()-1).departLocation eq eachticket.departLocation }">
+		<tr><td>${fn:substring(eachticket.optioncode,0,3) }➡${fn:substring(eachticket.optioncode,3,6) }</td>
+		<td>${cnt }명</td><td>${eachticket.classStr }</td><td>${eachticket.baggageStr }</td>
+		<td><fmt:formatNumber value="${(eachticket.standardFee + eachticket.classfee+ eachticket.baggage)*cnt}" pattern="#,###" /></td>		</tr>
+	<c:set var="costback" value="${costback+ eachticket.standardFee + eachticket.classfee+ eachticket.baggage}" />
+	</c:if>
+</c:forEach>
+</c:if>
+<c:set var="costback" value="${costback*cnt}" />
+<tr><th class="table-secondary" colspan="2">총 요금(오는 편)</th><td colspan="3"><fmt:formatNumber value="${costback}" pattern="#,###" />원</td></tr>
 </tbody>
 </table>
 
 <div class="row justify-content-between">
-<div class="col-4"><h5>총 예상 요금</h5></div><div class="col-4"><h5>1,000,000원</h5></div>
+<div class="col-4"><h5>총 예상 요금</h5></div><div class="col-4"><h5><fmt:formatNumber value="${costgo+costback}" pattern="#,###" />원</h5></div>
 </div>
 
 <ul class="smallinfo"><strong>예약 시 주의사항</strong>
@@ -69,7 +91,7 @@ a:link {
 
 
 
-<form class="needs-validation" action="4005_rule2.html" novalidate>
+<form class="needs-validation" action="4902_fareInsert_pay.jsp" novalidate>
 <%@ include file="4004_1_passengerInfo.jsp" %>
 <label><input class="form-check-input" type="checkbox" onchange="bringPassengerinfo()">탑승객 정보 불러오기</label><br>
 <strong>탑승객 영문이름, 생년월일, 성별 기재 시 주의사항</strong>
@@ -98,9 +120,9 @@ a:link {
 <div class="row .justify-content-start">
 <h5 class="col-3">마일리지 사용하기</h5>
 	<div class="input-group col" id="mileageinput" required>
-	<input type="number" class="form-control" value="0" min ="0" max="99999999">
+	<input type="number" class="form-control" name="useMileage" value="0" min ="0" max="99999999">
 	<span class="input-group-text"> / </span>
-	<input type="number" class="input-group-text" value="1780000" readonly>
+	<input type="number" class="input-group-text" value="${reg2.mileage }" readonly>
 	</div>
 	<div class="col-3"></div>
 </div>
@@ -116,19 +138,20 @@ a:link {
 <label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="롯데카드" >롯데카드결제조건</label><div class="col-sm-3">3,000원</div>
 <label class="col-sm-3"><input class="form-check-input" type="radio" name="discountcard" value="현대카드" >현대카드결제조건</label><div class="col-sm-3">40,000원</div>
 </div>
+
 <br><br>
 
 <div class="rounded-2 bg-info row">
-<div class="col text-center">총 요금 1,000,000원</div>
+<div class="col text-center align-self-center ">총 요금 <fmt:formatNumber value="${costgo+costback}" pattern="#,###" />원</div>
 <div class="col">
 	<div class="row">
 		<div class="col">카드할인  -</div>
-		<div class="col" id="finaldiscountcard">20,000</div></div>
+		<div class="col" id="finaldiscountcard">0</div></div>
 	<div class="row">
 		<div class="col">마일리지 -</div>
-		<div class="col" id="finalmileage">548,110</div></div>
+		<div class="col" id="finalmileage">0</div></div>
 </div>
-<div class="col text-center fs-5">최종결제금액<h2 style="display:inline-block;" class="text-primary" id="finalprice">800,000</h2>원</div>
+<div class="col text-center fs-5">최종결제금액<span class="text-primary h2" id="finalprice"> ${costgo+costback } </span>원</div>
 </div>
 <br>
 <label><input class="form-check-input" type="checkbox" onchange="bringcardinfo(this)">카드정보 불러오기</label>
@@ -229,6 +252,8 @@ var consentAgreements = document.querySelectorAll('#consentAgreements input')
 					}
 					if(thiscard.value==""){cardcorporate.disabled=false;}
 				})
+				let cardcorporate2= document.querySelector('[name=cardcorporate2]')
+				cardcorporate2.value=cardcorporate.value
 				finalpriceapply();
 		})
  })
@@ -246,27 +271,12 @@ function discountcardbyselectedcard() {
 	}
 }
 
-/* 탑승자정보 불러오기 */
-function bringPassengerinfo(){	//db에서 정보 불러와서 넣기
- 	let psginputs =document.querySelectorAll('#passengerinfoset input')
- 	psginputs[0].value='김박박';
- 	psginputs[1].value='Kim';
- 	psginputs[2].value='bakbak';
- 	psginputs[3].value='2222-10-01';
- 	if('m'=='f'){psginputs[4].checked=true;}
- 	if('f'=='f'){psginputs[5].checked=true;}
- 	psginputs[6].value='m485465312';
- 	psginputs[7].value='2023-10-01';
- 	psginputs[8].value='한국';
- 	psginputs[9].value='북한';
- }
-
+ 
 /* 나중에결제 선택했을때 카드 입력안해도 validate안걸리게 required 상태 바꾸는거 */
 function paynow(){
 	let form = document.querySelector('form');
 	let filset = document.querySelectorAll('fieldset.showswitchtarget input,fieldset.showswitchtarget select');
 	form.classList.remove('was-validated');
-	console.log(filset)
 	filset.forEach(function(self){
 		if(self.required==true){
 			self.required=false
@@ -277,6 +287,14 @@ function paynow(){
 	filset[7].required=false;
 	
 }
+
+var originalPrice=${costgo+costback }	;
+var myMileage= '${reg2.mileage}';
+if(myMileage==''){myMileage=0;}else{myMileage=Number(myMileage)}
+
+
+			console.log('js외부 '+myMileage)
+
 </script>
 <script type="text/javascript" src="4000_switchInfo.js">/*버튼눌러서 가는편 오는편 바꾸기*/</script>
 <script type="text/javascript" src="4000_bringcardinfo.js">/*카드정보불러오기*/</script>
@@ -287,7 +305,9 @@ function paynow(){
 cardcorporate.addEventListener('change',function(){
 	discountcardbyselectedcard();
 	discountcardapply(cardcorporate.value);
-	finalpriceapply()
+	finalpriceapply();
+	let cardcorporate2= document.querySelector('[name=cardcorporate2]')
+	cardcorporate2.value=cardcorporate.value
 })
 /* 마일리지 입력할때 */
 mileageinputs[0].addEventListener("input",mileageValid)	
@@ -304,11 +324,11 @@ showswitch[1].addEventListener('click',function(){
 
 /* 지금결제vs나중에 */
 showswitch[2].addEventListener('click',function(){
-	showswitching('2','2','','finalsubmit','결제 완료하기','4006_book_success.jsp');
+	showswitching('2','2','','finalsubmit','결제 완료하기','4902_fareInsert_pay.jsp');
 	paynow()
 }) 	
 showswitch[3].addEventListener('click',function(){
-	showswitching('2','3','none','finalsubmit','예약 완료하기','4005_rule3.html');	
+	showswitching('2','3','none','finalsubmit','예약 완료하기','4901_fareInsert_reserve.jsp');	
 	paynow()
 }) 	
 
